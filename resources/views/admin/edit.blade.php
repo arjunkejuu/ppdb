@@ -1,0 +1,619 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container bg-white rounded p-4">
+        <form action="{{ route('admin.dashboard.update', $data->id_pdb) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('POST')
+            <div class="form-group">
+                <div class="d-flex">
+                    <div class="me-auto p-2">
+                        <a href="{{ route('admin.dashboard') }}" class="btn border">
+                            <i class="ri-arrow-go-back-line fs-5"></i>
+                        </a>
+                    </div>
+                    <div class="p-2">
+                        <a href="{{ route('admin.dashboard.detail', $data->id_pdb) }}" class="btn border">
+                            <i class="ri-eye-line fs-5"></i>
+                        </a>
+                    </div>
+                    <div class="p-2" id="editButton">
+                        <a class="btn border" type="btn">
+                            <i class="ri-save-line fs-5"></i>
+                        </a>
+                    </div>
+                    <div class="p-2">
+                        <a href="#" class="btn border">
+                            <i class="ri-delete-bin-line fs-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <h5 class="text-center mb-3">DATA RINCI</h5>
+                
+                {{-- Data PDB --}}
+                <div class="border rounded p-3 position-relative mb-3">
+                    <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Anak</h5>
+                    <div class="mb-2 mt-3 row">
+                        <label for="nama_pdb" class="col-sm-2 col-form-label">Nama</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="nama_pdb" class="form-control" value="{{ $data->nama_pdb }}" required>
+                        </div>
+                    </div>
+                    <div class="mb-2 row align-items-center">
+                        <label for="jenis_kelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                        <div class="col-sm-10">
+                            @if ($data->jenis_kelamin == 'Laki-laki')
+                            <div class="form-check form-check-inline">
+                                <input name="jenis_kelamin" type="radio" class="form-check-input" value="Laki-laki" name="inlineRadioOption" checked>
+                                <label for="jenis_kelamin" class="form-check-label">Laki-Laki</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input name="jenis_kelamin" type="radio" class="form-check-input" value="Perempuan" name="inlineRadioOption">
+                                <label for="jenis_kelamin" class="form-check-label">Perempuan</label>
+                            </div>
+                            @else
+                            <div class="form-check form-check-inline">
+                                <input name="jenis_kelamin" type="radio" class="form-check-input" value="Laki-laki" name="inlineRadioOption">
+                                <label for="jenis_kelamin" class="form-check-label">Laki-Laki</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input name="jenis_kelamin" type="radio" class="form-check-input" value="Perempuan" name="inlineRadioOption" checked>
+                                <label for="jenis_kelamin" class="form-check-label">Perempuan</label>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="tanggal_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                        <div class="col-sm-10">
+                            <input name="tanggal_lahir" type="text" id="tanggal_lahir" class="date form-control" placeholder="{{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d/m/Y') }}" required>
+                            {{-- <input type="date" name="tanggal_lahir" id="tanggal_lahir" value="{{ $data->tanggal_lahir }}" class="form-control"> --}}
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="tempat_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="tempat_lahir" id="tempat_lahir" value="{{ $data->tempat_lahir }}" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="agama" class="col-sm-2 col-form-label">Agama</label>
+                        <div class="col-sm-10">
+                            <select name="agama" id="agama" class="form-select" required>
+                                <option value="{{ $data->agama }}" hidden selected>{{ $data->agama }}</option>
+                                <option value="" disabled>Pilih Agama</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen">Kristen</option>
+                                <option value="Katolik">Katolik</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Buddha">Buddha</option>
+                                <option value="Khonghucu">Khonghucu</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="berkebutuhan_khusus" class="col-sm-2 col-form-label">Berkebutuhan Khusus</label>
+                        <div class="col-sm-10">
+                            <select name="berkebutuhan_khusus" id="berkebutuhan_khusus" class="form-select" required>
+                                <option value="{{ $data->berkebutuhan_khusus }}" hidden selected>{{ $data->berkebutuhan_khusus }}</option>
+                                <option value="Tidak">Tidak</option>
+                                <option value="Netra (A)">Netra (A)</option>
+                                <option value="Rungu (B)">Rungu (B)</option>
+                                <option value="Granita Ringan (C)">Granita Ringan (C)</option>
+                                <option value="Granita Sedang (C1)">Granita Sedang (C1)</option>
+                                <option value="Daksa Ringan">Daksa Ringan (D)</option>
+                                <option value="Daksa Sedang">Daksa Sedang (D1)</option>
+                                <option value="Laras (E)">Laras (E)</option>
+                                <option value="Wicara (F)">Wicara (F)</option>
+                                <option value="Hyperaktif (H)">Hyperaktif (H)</option>
+                                <option value="Cerdas Istimewa (I)">Cerdas Istimewa (I)</option>
+                                <option value="Bakat Istimewa (J)">Bakat Istimewa (J)</option>
+                                <option value="Kesulitan Belajar (K)">Kesulitan Belajar (K)</option>
+                                <option value="Narkoba (N)">Narkoba (N)</option>
+                                <option value="Indigo (O)">Indigo (O)</option>
+                                <option value="Down Syndrome (P)">Down Syndrome (P)</option>
+                                <option value="Autis (Q)">Autis (Q)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="tempat_tinggal" class="col-sm-2 col-form-label">Tempat Tinggal</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="tempat_tinggal" id="tempat_tinggal" class="form-control" value="{{ $data->tempat_tinggal }}" required>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="anak_ke" class="col-sm-2 col-form-label">Anak Ke</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="anak_ke" id="anak_ke" class="form-control" value="{{ $data->anak_ke }}" required>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="transportasi" class="col-sm-2 col-form-label">Transportasi</label>
+                        <div class="col-sm-10">
+                            <select name="transportasi" id="transportasi" class="form-select" required disabled>
+                                <option value="{{ $data->transportasi }}" hidden selected>{{ $data->transportasi }}</option>
+                                <option value="" disabled>Pilih Moda Transportasi ...</option>
+                                <option value="Jalan Kaki">Jalan Kaki</option>
+                                <option value="Angkutan Umum/Bus/Pete-pete">Angkutan Umum/Bus/Pete-pete</option>
+                                <option value="Mobil/Bus Antar Jemput">Mobil/Bus Antar Jemput</option>
+                                <option value="Kereta Api">Kereta Api</option>
+                                <option value="Ojek">Ojek</option>
+                                <option value="Andong/Bendi/Sado/Dokar/Delman/Becak">Andong/Bendi/Sado/Dokar/Delman/Becak</option>
+                                <option value="Perahu Penyebrangan/Rakit/Getek">Perahu Penyebrangan/Rakit/Getek</option>
+                                <option value="Kuda">Kuda</option>
+                                <option value="Sepeda">Sepeda</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="alamat_tempat_tinggal" class="col-sm-2 col-form-label">Alamat Tempat Tinggal</label>
+                        <div class="col-sm-10">
+                            <textarea name="alamat_tempat_tinggal" id="alamat_tempat_tinggal" rows="5" class="form-control" placeholder="{{ $data->alamat_tempat_tinggal }}" required></textarea>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="desa" class="col-sm-2 col-form-label">Desa/Kelurahan</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="desa" id="desa" class="form-control" value="{{ $data->desa }}" required>
+                        </div>
+                    </div>
+                </div>
+                
+                {{-- Data Ayah Kandung --}}
+                <div class="border rounded p-3 position-relative mb-3">
+                    <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Ayah Kandung</h5>
+                    <div class="mb-2 mt-3 row">
+                        <label for="nama_ayah" class="col-sm-2 col-form-label">Nama</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="nama_ayah" class="form-control" value="{{ $data->nama_ayah }}" required>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="tahun_lahir_ayah" class="col-sm-2 col-form-label">Tahun Lahir</label>
+                        <div class="col-sm-10">
+                            <input name="tahun_lahir_ayah" type="text" id="tahun_lahir_ayah" class="dateYear form-control" placeholder="{{ $data->tahun_lahir_ayah }}" required>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="pendidikan_ayah" class="col-sm-2 col-form-label">Pendidikan</label>
+                        <div class="col-sm-10">
+                            <select name="pendidikan_ayah" id="pendidikan_ayah" class="form-select" required>
+                                <option value="{{ $data->pendidikan_ayah }}" hidden selected>{{ $data->pendidikan_ayah }}</option>
+                                <option value="" disabled>Pilih Pendidikan ...</option>
+                                <option value="D1">D1</option>
+                                <option value="D2">D2</option>
+                                <option value="D3">D3</option>
+                                <option value="D4">D4</option>
+                                <option value="Informal">Informal</option>
+                                <option value="Lainnya">Lainnya</option>
+                                <option value="Non formal">Non formal</option>
+                                <option value="Paket A">Paket A</option>
+                                <option value="Paket B">Paket B</option>
+                                <option value="Paket C">Paket C</option>
+                                <option value="PAUD">PAUD</option>
+                                <option value="Profesi">Profesi</option>
+                                <option value="Putus SD">Putus SD</option>
+                                <option value="S1">S1</option>
+                                <option value="S2">S2</option>
+                                <option value="S2 Terapan">S2 Terapan</option>
+                                <option value="S3">S3</option>
+                                <option value="S3 Terapan">S3 Terapan</option>
+                                <option value="SD / sederajat">SD / sederajat</option>
+                                <option value="SMA / sederajat">SMA / sederajat</option>
+                                <option value="SMP / sederajat">SMP / sederajat</option>
+                                <option value="Sp-1">Sp-1</option>
+                                <option value="Sp-2">Sp-2</option>
+                                <option value="Tidak sekolah">Tidak sekolah</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="berkebutuhan_khusus_ayah" class="col-sm-2 col-form-label">Berkebutuhan Khusus</label>
+                        <div class="col-sm-10">
+                            <select name="berkebutuhan_khusus_ayah" id="berkebutuhan_khusus_ayah" class="form-select" required>
+                                <option value="{{ $data->berkebutuhan_khusus_ayah }}" hidden selected>{{ $data->berkebutuhan_khusus_ayah }}</option>
+                                <option value="Tidak">Tidak</option>
+                                <option value="Netra (A)">Netra (A)</option>
+                                <option value="Rungu (B)">Rungu (B)</option>
+                                <option value="Granita Ringan (C)">Granita Ringan (C)</option>
+                                <option value="Granita Sedang (C1)">Granita Sedang (C1)</option>
+                                <option value="Daksa Ringan">Daksa Ringan (D)</option>
+                                <option value="Daksa Sedang">Daksa Sedang (D1)</option>
+                                <option value="Laras (E)">Laras (E)</option>
+                                <option value="Wicara (F)">Wicara (F)</option>
+                                <option value="Hyperaktif (H)">Hyperaktif (H)</option>
+                                <option value="Cerdas Istimewa (I)">Cerdas Istimewa (I)</option>
+                                <option value="Bakat Istimewa (J)">Bakat Istimewa (J)</option>
+                                <option value="Kesulitan Belajar (K)">Kesulitan Belajar (K)</option>
+                                <option value="Narkoba (N)">Narkoba (N)</option>
+                                <option value="Indigo (O)">Indigo (O)</option>
+                                <option value="Down Syndrome (P)">Down Syndrome (P)</option>
+                                <option value="Autis (Q)">Autis (Q)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="pekerjaan_ayah" class="col-sm-2 col-form-label">Pekerjaan</label>
+                        <div class="col-sm-10">
+                            <select name="pekerjaan_ayah" id="pekerjaan_ayah" class="form-select" required>
+                                <option value="{{ $data->pekerjaan_ayah }}" hidden selected>{{ $data->pekerjaan_ayah }}</option>
+                                <option value="" disabled>Pilih Pekerjaan ...</option>
+                                <option value="Tidak bekerja">Tidak bekerja</option>
+                                <option value="Nelayan">Nelayan</option>
+                                <option value="Petani">Petani</option>
+                                <option value="Peternak">Peternak</option>
+                                <option value="PNS/TNI/Polri">PNS/TNI/Polri</option>
+                                <option value="Karyawan swasta">Karyawan swasta</option>
+                                <option value="Pedagang kecil">Pedagang kecil</option>
+                                <option value="Pedagang besar">Pedagang besar</option>
+                                <option value="Wiraswasta">Wiraswasta</option>
+                                <option value="Wirausaha">Wirausaha</option>
+                                <option value="Buruh">Buruh</option>
+                                <option value="Pensiunan">Pensiunan</option>
+                                <option value="Tenaga Kerja Indonesia">Tenaga Kerja Indonesia</option>
+                                <option value="Karyawan BUMN">Karyawan BUMN</option>
+                                <option value="Tidak dapat diterapkan">Tidak dapat diterapkan</option>
+                                <option value="Sudah meninggal">Sudah meninggal</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="penghasilan_ayah" class="col-sm-2 col-form-label">Penghasilan</label>
+                        <div class="col-sm-10">
+                            <select name="penghasilan_ayah" id="penghasilan_ayah" class="form-select" required>
+                                <option value="{{ $data->penghasilan_ayah }}" hidden selected>{{ $data->penghasilan_ayah }}</option>
+                                <option value="" disabled>Pilih Penghasilan Perbulan ...</option>
+                                <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
+                                <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
+                                <option value="Rp. 1,000,000 - Rp. 1,999,999">Rp. 1,000,000 - Rp. 1,999,999</option>
+                                <option value="Rp. 2,000,000 - Rp. 4,999,999">Rp. 2,000,000 - Rp. 4,999,999</option>
+                                <option value="Rp. 5,000,000 - Rp. 20,000,000">Rp. 5,000,000 - Rp. 20,000,000</option>
+                                <option value="Lebih dari Rp. 20,000,000">Lebih dari Rp. 20,000,000</option>
+                                <option value="Tidak berpenghasilan">Tidak berpenghasilan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                {{-- Data Ibu Kandung --}}
+                <div class="border rounded p-3 position-relative mb-3">
+                    <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Ibu Kandung</h5>
+                    <div class="mb-2 mt-3 row">
+                        <label for="nama_ibu" class="col-sm-2 col-form-label">Nama</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="nama_ibu" class="form-control" value="{{ $data->nama_ibu }}" required>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="tahun_lahir_ibu" class="col-sm-2 col-form-label">Tahun Lahir</label>
+                        <div class="col-sm-10">
+                            <input name="tahun_lahir_ibu" type="text" id="tahun_lahir_ibu" class="dateYear form-control" placeholder="{{ $data->tahun_lahir_ibu }}" required>
+                            {{-- <input type="date" name="tanggal_lahir" id="tanggal_lahir" value="{{ $data->tanggal_lahir }}" class="form-control"> --}}
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="pendidikan_ibu" class="col-sm-2 col-form-label">Pendidikan</label>
+                        <div class="col-sm-10">
+                            <select name="pendidikan_ibu" id="pendidikan_ibu" class="form-select" required>
+                                <option value="{{ $data->pendidikan_ibu }}" hidden selected>{{ $data->pendidikan_ibu }}</option>
+                                <option value="" disabled>Pilih Pendidikan ...</option>
+                                <option value="D1">D1</option>
+                                <option value="D2">D2</option>
+                                <option value="D3">D3</option>
+                                <option value="D4">D4</option>
+                                <option value="Informal">Informal</option>
+                                <option value="Lainnya">Lainnya</option>
+                                <option value="Non formal">Non formal</option>
+                                <option value="Paket A">Paket A</option>
+                                <option value="Paket B">Paket B</option>
+                                <option value="Paket C">Paket C</option>
+                                <option value="PAUD">PAUD</option>
+                                <option value="Profesi">Profesi</option>
+                                <option value="Putus SD">Putus SD</option>
+                                <option value="S1">S1</option>
+                                <option value="S2">S2</option>
+                                <option value="S2 Terapan">S2 Terapan</option>
+                                <option value="S3">S3</option>
+                                <option value="S3 Terapan">S3 Terapan</option>
+                                <option value="SD / sederajat">SD / sederajat</option>
+                                <option value="SMA / sederajat">SMA / sederajat</option>
+                                <option value="SMP / sederajat">SMP / sederajat</option>
+                                <option value="Sp-1">Sp-1</option>
+                                <option value="Sp-2">Sp-2</option>
+                                <option value="Tidak sekolah">Tidak sekolah</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="berkebutuhan_khusus_ibu" class="col-sm-2 col-form-label">Berkebutuhan Khusus</label>
+                        <div class="col-sm-10">
+                            <select name="berkebutuhan_khusus_ibu" id="berkebutuhan_khusus_ibu" class="form-select" required>
+                                <option value="{{ $data->berkebutuhan_khusus_ibu }}" hidden selected>{{ $data->berkebutuhan_khusus_ibu }}</option>
+                                <option value="Tidak">Tidak</option>
+                                <option value="Netra (A)">Netra (A)</option>
+                                <option value="Rungu (B)">Rungu (B)</option>
+                                <option value="Granita Ringan (C)">Granita Ringan (C)</option>
+                                <option value="Granita Sedang (C1)">Granita Sedang (C1)</option>
+                                <option value="Daksa Ringan">Daksa Ringan (D)</option>
+                                <option value="Daksa Sedang">Daksa Sedang (D1)</option>
+                                <option value="Laras (E)">Laras (E)</option>
+                                <option value="Wicara (F)">Wicara (F)</option>
+                                <option value="Hyperaktif (H)">Hyperaktif (H)</option>
+                                <option value="Cerdas Istimewa (I)">Cerdas Istimewa (I)</option>
+                                <option value="Bakat Istimewa (J)">Bakat Istimewa (J)</option>
+                                <option value="Kesulitan Belajar (K)">Kesulitan Belajar (K)</option>
+                                <option value="Narkoba (N)">Narkoba (N)</option>
+                                <option value="Indigo (O)">Indigo (O)</option>
+                                <option value="Down Syndrome (P)">Down Syndrome (P)</option>
+                                <option value="Autis (Q)">Autis (Q)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="pekerjaan_ibu" class="col-sm-2 col-form-label">Pekerjaan</label>
+                        <div class="col-sm-10">
+                            <select name="pekerjaan_ibu" id="pekerjaan_ibu" class="form-select" required>
+                                <option value="{{ $data->pekerjaan_ibu }}" hidden selected>{{ $data->pekerjaan_ibu }}</option>
+                                <option value="" disabled>Pilih Pekerjaan ...</option>
+                                <option value="Tidak bekerja">Tidak bekerja</option>
+                                <option value="Nelayan">Nelayan</option>
+                                <option value="Petani">Petani</option>
+                                <option value="Peternak">Peternak</option>
+                                <option value="PNS/TNI/Polri">PNS/TNI/Polri</option>
+                                <option value="Karyawan swasta">Karyawan swasta</option>
+                                <option value="Pedagang kecil">Pedagang kecil</option>
+                                <option value="Pedagang besar">Pedagang besar</option>
+                                <option value="Wiraswasta">Wiraswasta</option>
+                                <option value="Wirausaha">Wirausaha</option>
+                                <option value="Buruh">Buruh</option>
+                                <option value="Pensiunan">Pensiunan</option>
+                                <option value="Tenaga Kerja Indonesia">Tenaga Kerja Indonesia</option>
+                                <option value="Karyawan BUMN">Karyawan BUMN</option>
+                                <option value="Tidak dapat diterapkan">Tidak dapat diterapkan</option>
+                                <option value="Sudah meninggal">Sudah meninggal</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="penghasilan_ibu" class="col-sm-2 col-form-label">Penghasilan</label>
+                        <div class="col-sm-10">
+                            <select name="penghasilan_ibu" id="penghasilan_ibu" class="form-select" required>
+                                <option value="{{ $data->penghasilan_ibu }}" hidden selected>{{ $data->penghasilan_ibu }}</option>
+                                <option value="" disabled>Pilih Penghasilan Perbulan ...</option>
+                                <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
+                                <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
+                                <option value="Rp. 1,000,000 - Rp. 1,999,999">Rp. 1,000,000 - Rp. 1,999,999</option>
+                                <option value="Rp. 2,000,000 - Rp. 4,999,999">Rp. 2,000,000 - Rp. 4,999,999</option>
+                                <option value="Rp. 5,000,000 - Rp. 20,000,000">Rp. 5,000,000 - Rp. 20,000,000</option>
+                                <option value="Lebih dari Rp. 20,000,000">Lebih dari Rp. 20,000,000</option>
+                                <option value="Tidak berpenghasilan">Tidak berpenghasilan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                {{-- Data Wali --}}
+                <div class="border rounded p-3 position-relative mb-3">
+                    <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Wali</h5>
+                    <div class="mb-2 mt-3 row">
+                        <label for="nama_wali" class="col-sm-2 col-form-label">Nama</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="nama_wali" class="form-control" value="{{ $data->nama_wali }}" required>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="tahun_lahir_wali" class="col-sm-2 col-form-label">Tahun Lahir</label>
+                        <div class="col-sm-10">
+                            <input name="tahun_lahir_wali" type="text" id="tahun_lahir_wali" class="dateYear form-control" placeholder="{{ $data->tahun_lahir_wali }}" required>
+                            {{-- <input type="date" name="tanggal_lahir" id="tanggal_lahir" value="{{ $data->tanggal_lahir }}" class="form-control"> --}}
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="pendidikan_wali" class="col-sm-2 col-form-label">Pendidikan</label>
+                        <div class="col-sm-10">
+                            <select name="pendidikan_wali" id="pendidikan_wali" class="form-select" required>
+                                <option value="{{ $data->pendidikan_wali }}" hidden selected>{{ $data->pendidikan_wali }}</option>
+                                <option value="" disabled>Pilih Pendidikan ...</option>
+                                <option value="D1">D1</option>
+                                <option value="D2">D2</option>
+                                <option value="D3">D3</option>
+                                <option value="D4">D4</option>
+                                <option value="Informal">Informal</option>
+                                <option value="Lainnya">Lainnya</option>
+                                <option value="Non formal">Non formal</option>
+                                <option value="Paket A">Paket A</option>
+                                <option value="Paket B">Paket B</option>
+                                <option value="Paket C">Paket C</option>
+                                <option value="PAUD">PAUD</option>
+                                <option value="Profesi">Profesi</option>
+                                <option value="Putus SD">Putus SD</option>
+                                <option value="S1">S1</option>
+                                <option value="S2">S2</option>
+                                <option value="S2 Terapan">S2 Terapan</option>
+                                <option value="S3">S3</option>
+                                <option value="S3 Terapan">S3 Terapan</option>
+                                <option value="SD / sederajat">SD / sederajat</option>
+                                <option value="SMA / sederajat">SMA / sederajat</option>
+                                <option value="SMP / sederajat">SMP / sederajat</option>
+                                <option value="Sp-1">Sp-1</option>
+                                <option value="Sp-2">Sp-2</option>
+                                <option value="Tidak sekolah">Tidak sekolah</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="pekerjaan_wali" class="col-sm-2 col-form-label">Pekerjaan</label>
+                        <div class="col-sm-10">
+                            <select name="pekerjaan_wali" id="pekerjaan_wali" class="form-select" required>
+                                <option value="{{ $data->pekerjaan_wali }}" hidden selected>{{ $data->pekerjaan_wali }}</option>
+                                <option value="" disabled>Pilih Pekerjaan ...</option>
+                                <option value="Tidak bekerja">Tidak bekerja</option>
+                                <option value="Nelayan">Nelayan</option>
+                                <option value="Petani">Petani</option>
+                                <option value="Peternak">Peternak</option>
+                                <option value="PNS/TNI/Polri">PNS/TNI/Polri</option>
+                                <option value="Karyawan swasta">Karyawan swasta</option>
+                                <option value="Pedagang kecil">Pedagang kecil</option>
+                                <option value="Pedagang besar">Pedagang besar</option>
+                                <option value="Wiraswasta">Wiraswasta</option>
+                                <option value="Wirausaha">Wirausaha</option>
+                                <option value="Buruh">Buruh</option>
+                                <option value="Pensiunan">Pensiunan</option>
+                                <option value="Tenaga Kerja Indonesia">Tenaga Kerja Indonesia</option>
+                                <option value="Karyawan BUMN">Karyawan BUMN</option>
+                                <option value="Tidak dapat diterapkan">Tidak dapat diterapkan</option>
+                                <option value="Sudah meninggal">Sudah meninggal</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="penghasilan_wali" class="col-sm-2 col-form-label">Penghasilan</label>
+                        <div class="col-sm-10">
+                            <select name="penghasilan_wali" id="penghasilan_wali" class="form-select" required>
+                                <option value="{{ $data->penghasilan_wali }}" hidden selected>{{ $data->penghasilan_wali }}</option>
+                                <option value="" disabled>Pilih Penghasilan Perbulan ...</option>
+                                <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
+                                <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
+                                <option value="Rp. 1,000,000 - Rp. 1,999,999">Rp. 1,000,000 - Rp. 1,999,999</option>
+                                <option value="Rp. 2,000,000 - Rp. 4,999,999">Rp. 2,000,000 - Rp. 4,999,999</option>
+                                <option value="Rp. 5,000,000 - Rp. 20,000,000">Rp. 5,000,000 - Rp. 20,000,000</option>
+                                <option value="Lebih dari Rp. 20,000,000">Lebih dari Rp. 20,000,000</option>
+                                <option value="Tidak berpenghasilan">Tidak berpenghasilan</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                {{-- Berkas --}}
+                <div class="border rounded p-3 position-relative">
+                    <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Berkas</h5>
+                    <div class="mb-2 mt-3 row">
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="email" id="email" class="form-control" value="{{ $data->email }}" required>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="no_hp" class="col-sm-2 col-form-label">No. Handphone</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="no_hp" id="no_hp" class="form-control" value="{{ $data->no_hp }}" required>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="formFile" class="col-sm-2 col-form-label">Kartu Keluarga</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="kartu_keluarga" id="formFile" class="form-control" required>
+                            <a href="{{ asset('storage/'.$data->kartu_keluarga) }}" target="_blank">
+                                <img 
+                                    id="imagePreview" 
+                                    src="{{ asset('storage/'.$data->kartu_keluarga) }}" 
+                                    alt="Image Preview" 
+                                    style="{{ $data->kartu_keluarga ? '' : 'display:none;' }}; margin-top:10px; max-width:100%; height:100px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="formFile" class="col-sm-2 col-form-label">Akta Kelahiran</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="akta_kelahiran" id="formFile" class="form-control" required>
+                            <a href="{{ asset('storage/'.$data->akta_kelahiran) }}" target="_blank">
+                                <img 
+                                    id="imagePreview" 
+                                    src="{{ asset('storage/'.$data->akta_kelahiran) }}" 
+                                    alt="Image Preview" 
+                                    style="{{ $data->akta_kelahiran ? '' : 'display:none;' }}; margin-top:10px; max-width:100%; height:100px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="formFile" class="col-sm-2 col-form-label">KTP Ayah</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="ktp_ayah" id="formFile" class="form-control">
+                            <a href="{{ asset('storage/'.$data->ktp_ayah) }}" target="_blank">
+                                <img 
+                                    id="imagePreview" 
+                                    src="{{ asset('storage/'.$data->ktp_ayah) }}" 
+                                    alt="Image Preview" 
+                                    style="{{ $data->ktp_ayah ? '' : 'display:none;' }}; margin-top:10px; max-width:100%; height:100px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="formFile" class="col-sm-2 col-form-label">KTP Ibu</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="ktp_ibu" id="formFile" class="form-control">
+                            <a href="{{ asset('storage/'.$data->ktp_ibu) }}" target="_blank">
+                                <img 
+                                    id="imagePreview" 
+                                    src="{{ asset('storage/'.$data->ktp_ibu) }}" 
+                                    alt="Image Preview" 
+                                    style="{{ $data->ktp_ibu ? '' : 'display:none;' }}; margin-top:10px; max-width:100%; height:100px;">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="formFile" class="col-sm-2 col-form-label">KTP Wali</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="ktp_wali" id="formFile" class="form-control">
+                            <a href="{{ asset('storage/'.$data->ktp_wali) }}" target="_blank">
+                                <img 
+                                    id="imagePreview" 
+                                    src="{{ asset('storage/'.$data->ktp_wali) }}" 
+                                    alt="Image Preview" 
+                                    style="{{ $data->ktp_wali ? '' : 'display:none;' }}; margin-top:10px; max-width:100%; height:100px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+@endsection
+
+@push('scripts')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
+
+{{-- Date Picker --}}
+<script>
+    $(document).ready(function () {
+        var currentYear = new Date().getFullYear();
+        
+        $('.date').datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+            orientation: 'bottom auto',
+            keyboardNavigation: false,
+            endDate: new Date((currentYear - 3), 11, 31)
+        });
+            
+        $('.dateYear').datepicker({
+            format: 'yyyy',
+            autoclose: true,
+            orientation: 'bottom auto',
+            minViewMode: 2,
+            maxViewMode: 2,
+            endDate: new Date((currentYear - 10), 11, 31)
+        });
+    });
+</script>
+
+<script>
+    document.getElementById('formFile').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imgPreview = document.getElementById('imagePreview');
+          imgPreview.src = e.target.result;
+          imgPreview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+@endpush

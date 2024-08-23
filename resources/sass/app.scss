@@ -1,0 +1,91 @@
+html, body, section {
+    height: 100%;
+}
+
+main {
+    min-height: 800px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    height: 100%;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+}
+
+.navbar {
+    border-bottom: 5px solid #393185;
+}
+
+.footer {
+    background-color: #393185;
+    bottom: 0;
+}
+
+.footer-text {
+    color: white;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+.step-container {
+    position: relative;
+    text-align: center;
+    transform: translateY(-60%);
+}
+  
+.step-circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid #393185;
+    line-height: 30px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-pendaftaran {
+    margin-bottom: -50px;
+}
+
+.progress {
+    position: relative;
+    transform: translateY(15px);
+}
+
+.image-preview img {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+// Fonts
+@import url(https://fonts.bunny.net/css?family=kumbh-sans:500);
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Remix icon
+@import url(https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css);

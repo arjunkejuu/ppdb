@@ -34,12 +34,8 @@ class DashboardController extends Controller
         $data = Pdb::where("id_pdb", $id_pdb)->firstOrFail();
         
         $data->update($request->all());
-        
-        // $data->nama_pdb = $request->input('nama_pdb');
-        // // Update field lainnya
-        // $data->save();
 
-        return redirect()->route('admin.detail', $id_pdb)->with('success', 'Data berhasil diperbarui!');
+        return redirect()->route('admin.index', $id_pdb)->with('success', 'Data berhasil diperbarui!');
         // return view('admin.detail', compact('data'));
     }
 

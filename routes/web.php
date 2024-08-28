@@ -30,8 +30,8 @@ Route::get('/email', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard');
-Route::get('/dashboard/detail/{id_pdb}', [App\Http\Controllers\DashboardController::class,'dataPdb'])->name('admin.dashboard.detail');
-Route::get('/dashboard/edit/{id_pdb}', [App\Http\Controllers\DashboardController::class,'edit'])->name('admin.dashboard.edit');
-Route::post('/dashboard/update/{id_pdb}', [App\Http\Controllers\DashboardController::class,'update'])->name('admin.dashboard.update');
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/dashboard/detail/{id_pdb}', [App\Http\Controllers\DashboardController::class,'detail'])->name('dashboard.detail');
+Route::get('/dashboard/edit/{id_pdb}', [App\Http\Controllers\DashboardController::class,'edit'])->name('dashboard.edit');
+Route::put('/dashboard/update/{id_pdb}', [App\Http\Controllers\DashboardController::class,'update'])->name('dashboard.update');
 Route::get('/export-pdb/{id_pdb}', [App\Http\Controllers\PdbExportController::class,'exportToWord'])->name('export.pdb');

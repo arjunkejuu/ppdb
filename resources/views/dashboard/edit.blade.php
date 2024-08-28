@@ -2,29 +2,28 @@
 
 @section('content')
     <div class="container bg-white rounded p-4">
-        <form action="{{ route('admin.dashboard.update', $dataPdb->id_pdb) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('dashboard.update', $dataPdb->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
             <div class="form-group">
                 <div class="d-flex">
                     <div class="me-auto p-2">
-                        <a href="{{ route('admin.dashboard') }}" class="btn border">
+                        <a href="{{ route('dashboard.index') }}" class="btn border">
                             <i class="ri-arrow-go-back-line fs-5"></i>
                         </a>
                     </div>
                     <div class="p-2">
-                        <a href="{{ route('export.pdb', $dataPdb->id_pdb) }}" class="btn border">
-                            <i class="ri-download-line fs-5"></i>
+                        <a href="{{ route('dashboard.detail', $dataPdb->id) }}" class="btn border">
+                            <i class="ri-eye-line fs-5"></i>
                         </a>
                     </div>
-                    <div class="p-2">
-                        <a id="editButton" class="btn border">
-                            <i class="ri-pencil-line fs-5"></i>
-                        </a>
-                        <button type="submit" id="saveButton" class="btn border" hidden>
+                    <div class="p-2" id="editButton">
+                        <button type="submit" class="btn border">
                             <i class="ri-save-line fs-5"></i>
                         </button>
                     </div>
                     <div class="p-2">
-                        <a class="btn border">
+                        <a href="#" class="btn border">
                             <i class="ri-delete-bin-line fs-5"></i>
                         </a>
                     </div>
@@ -67,8 +66,7 @@
                     <div class="mb-2 row">
                         <label for="tanggal_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                         <div class="col-sm-10">
-                            <input name="tanggal_lahir" type="text" id="tanggal_lahir" class="date form-control" placeholder="{{ \Carbon\Carbon::parse($dataPdb->tanggal_lahir)->format('d/m/Y') }}" required>
-                            {{-- <input type="date" name="tanggal_lahir" id="tanggal_lahir" value="{{ $dataPdb->tanggal_lahir }}" class="form-control"> --}}
+                            <input name="tanggal_lahir" type="text" id="tanggal_lahir" class="date form-control" value="{{ \Carbon\Carbon::parse(old('tanggal_lahir', $dataPdb->tanggal_lahir))->format('d/m/Y') }}" required>
                         </div>
                     </div>
                     <div class="mb-2 row">
@@ -132,7 +130,7 @@
                     <div class="mb-2 row">
                         <label for="transportasi" class="col-sm-2 col-form-label">Transportasi</label>
                         <div class="col-sm-10">
-                            <select name="transportasi" id="transportasi" class="form-select" required disabled>
+                            <select name="transportasi" id="transportasi" class="form-select" required>
                                 <option value="{{ $dataPdb->transportasi }}" hidden selected>{{ $dataPdb->transportasi }}</option>
                                 <option value="" disabled>Pilih Moda Transportasi ...</option>
                                 <option value="Jalan Kaki">Jalan Kaki</option>
@@ -144,13 +142,14 @@
                                 <option value="Perahu Penyebrangan/Rakit/Getek">Perahu Penyebrangan/Rakit/Getek</option>
                                 <option value="Kuda">Kuda</option>
                                 <option value="Sepeda">Sepeda</option>
+                                <option value="Sepeda Motor">Sepeda Motor</option>
                             </select>
                         </div>
                     </div>
                     <div class="mb-2 row">
                         <label for="alamat_tempat_tinggal" class="col-sm-2 col-form-label">Alamat Tempat Tinggal</label>
                         <div class="col-sm-10">
-                            <textarea name="alamat_tempat_tinggal" id="alamat_tempat_tinggal" rows="5" class="form-control" placeholder="{{ $dataPdb->alamat_tempat_tinggal }}" required></textarea>
+                            <textarea name="alamat_tempat_tinggal" id="alamat_tempat_tinggal" rows="5" class="form-control" required>{{ old('alamat_tempat_tinggal', $dataPdb->alamat_tempat_tinggal) }}</textarea>
                         </div>
                     </div>
                     <div class="mb-2 row">
@@ -173,7 +172,7 @@
                     <div class="mb-2 row">
                         <label for="tahun_lahir_ayah" class="col-sm-2 col-form-label">Tahun Lahir</label>
                         <div class="col-sm-10">
-                            <input name="tahun_lahir_ayah" type="text" id="tahun_lahir_ayah" class="dateYear form-control" placeholder="{{ $dataPdb->tahun_lahir_ayah }}" required>
+                            <input name="tahun_lahir_ayah" type="text" id="tahun_lahir_ayah" class="dateYear form-control" value="{{ old('tahun_lahir_ayah', $dataPdb->tahun_lahir_ayah) }}" required>
                         </div>
                     </div>
                     <div class="mb-2 row">
@@ -290,8 +289,7 @@
                     <div class="mb-2 row">
                         <label for="tahun_lahir_ibu" class="col-sm-2 col-form-label">Tahun Lahir</label>
                         <div class="col-sm-10">
-                            <input name="tahun_lahir_ibu" type="text" id="tahun_lahir_ibu" class="dateYear form-control" placeholder="{{ $dataPdb->tahun_lahir_ibu }}" required>
-                            {{-- <input type="date" name="tanggal_lahir" id="tanggal_lahir" value="{{ $dataPdb->tanggal_lahir }}" class="form-control"> --}}
+                            <input name="tahun_lahir_ibu" type="text" id="tahun_lahir_ibu" class="dateYear form-control" value="{{ old('tahun_lahir_ayah', $dataPdb->tahun_lahir_ayah) }}" required>
                         </div>
                     </div>
                     <div class="mb-2 row">
@@ -397,6 +395,7 @@
                 </div>
                 
                 {{-- Data Wali --}}
+                @if ($dataPdb->nama_wali)
                 <div class="border rounded p-3 position-relative mb-3">
                     <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Wali</h5>
                     <div class="mb-2 mt-3 row">
@@ -488,6 +487,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 
                 {{-- Berkas --}}
                 <div class="border rounded p-3 position-relative">
@@ -602,42 +602,6 @@
         });
     });
 </script>
-
-{{-- Disabled --}}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Ambil semua elemen input, select, dan textarea
-        var elements = document.querySelectorAll('input, select, textarea');
-
-        // Menonaktifkan semua elemen
-        elements.forEach(function(element) {
-            element.disabled = true;
-        });
-
-        // Ambil tombol edit dan save
-        var editButton = document.getElementById('editButton');
-        var saveButton = document.getElementById('saveButton');
-
-        // Event listener untuk tombol edit
-        editButton.addEventListener('click', function() {
-            elements.forEach(function(element) {
-                element.disabled = false;
-            });
-            editButton.hidden = true;
-            saveButton.hidden = false;
-        });
-
-        // Event listener untuk tombol save
-        saveButton.addEventListener('click', function() {
-            elements.forEach(function(element) {
-                element.disabled = true;
-            });
-            editButton.hidden = false;
-            saveButton.hidden = true;
-        });
-    });
-</script>
-
 
 <script>
     document.getElementById('formFile').addEventListener('change', function(event) {

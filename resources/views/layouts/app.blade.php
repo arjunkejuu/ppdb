@@ -23,9 +23,17 @@
     <div id="app">
         <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="" height="60px">
-                </a>
+                @guest
+                    @if (Route::has('login'))
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <img src="{{ asset('images/logo.png') }}" alt="" height="60px">
+                        </a>
+                    @endif
+                @else
+                    <a class="navbar-brand" href="{{ route('dashboard.index') }}">
+                        <img src="{{ asset('images/logo.png') }}" alt="" height="60px">
+                    </a>
+                @endguest
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

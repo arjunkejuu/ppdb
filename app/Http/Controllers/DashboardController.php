@@ -8,12 +8,6 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     //
-    public function dataPdb($id_pdb)
-    {
-        $dataPdb = Pdb::where("id_pdb", $id_pdb)->firstOrFail();
-        return view('admin.detail', compact('dataPdb'));
-    }
-    
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,20 +17,31 @@ class DashboardController extends Controller
     {
         $semuaForms = Pdb::all();
         $diperiksaPdbs = Pdb::where('status_pendaftaran', 'Sedang Diperiksa')->get();
-        $dataPdbs = session('dataPdbs');
         
-        return view('admin.dashboard', compact('semuaForms', 'diperiksaPdbs', 'dataPdbs'));
+        return view('dashboard.index', compact('semuaForms', 'diperiksaPdbs'));
+    }
+    
+    public function detail($id_pdb)
+    {
+        $dataPdb = Pdb::where('id', $id_pdb)->firstOrFail();
+        return view('dashboard.detail', compact('dataPdb'));
+    }
+    
+    public function edit($id_pdb)
+    {
+        $dataPdb = Pdb::where('id', $id_pdb)->firstOrFail();
+        return view('dashboard.edit', compact('dataPdb'));
     }
     
     public function update(Request $request, $id_pdb)
     {
-        // Temukan data berdasarkan ID dan perbarui
-        $data = Pdb::where("id_pdb", $id_pdb)->firstOrFail();
-        
-        $data->update($request->all());
+        // Temukan data berdasarkan ID
+        $pdb = Pdb::where('id', $id_pdb)->firstOrFail();
 
-        return redirect()->route('admin.index', $id_pdb)->with('success', 'Data berhasil diperbarui!');
-        // return view('admin.detail', compact('data'));
+        // Perbarui data dengan data dari request
+        $pdb->update($request->all());
+
+        return redirect()->route('dashboard.detail', $id_pdb)->with('success', 'Data berhasil diperbarui!');
     }
 
 }

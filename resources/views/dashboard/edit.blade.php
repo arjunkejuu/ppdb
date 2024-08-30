@@ -36,7 +36,7 @@
                     <div class="mb-2 mt-3 row">
                         <label for="nama_pdb" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input type="text" id="nama_pdb" class="form-control" value="{{ $dataPdb->nama_pdb }}" required>
+                            <input type="text" name="nama_pdb" id="nama_pdb" class="form-control" value="{{ old('nama_pdb', $dataPdb->nama_pdb) }}" required>
                         </div>
                     </div>
                     <div class="mb-2 row align-items-center">
@@ -166,7 +166,7 @@
                     <div class="mb-2 mt-3 row">
                         <label for="nama_ayah" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input type="text" id="nama_ayah" class="form-control" value="{{ $dataPdb->nama_ayah }}" required>
+                            <input type="text" name="nama_ayah" id="nama_ayah" class="form-control" value="{{ $dataPdb->nama_ayah }}" required>
                         </div>
                     </div>
                     <div class="mb-2 row">
@@ -283,7 +283,7 @@
                     <div class="mb-2 mt-3 row">
                         <label for="nama_ibu" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input type="text" id="nama_ibu" class="form-control" value="{{ $dataPdb->nama_ibu }}" required>
+                            <input type="text" name="nama_ibu" id="nama_ibu" class="form-control" value="{{ $dataPdb->nama_ibu }}" required>
                         </div>
                     </div>
                     <div class="mb-2 row">
@@ -401,7 +401,7 @@
                     <div class="mb-2 mt-3 row">
                         <label for="nama_wali" class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                            <input type="text" id="nama_wali" class="form-control" value="{{ $dataPdb->nama_wali }}" required>
+                            <input type="text" name="nama_wali" id="nama_wali" class="form-control" value="{{ $dataPdb->nama_wali }}" required>
                         </div>
                     </div>
                     <div class="mb-2 row">
@@ -507,7 +507,7 @@
                     <div class="mb-2 row">
                         <label for="formFile" class="col-sm-2 col-form-label">Kartu Keluarga</label>
                         <div class="col-sm-10">
-                            <input type="file" name="kartu_keluarga" id="formFile" class="form-control" required>
+                            <input type="file" name="kartu_keluarga" id="formFile" class="form-control" {{ $dataPdb->kartu_keluarga ? '' : 'required' }}>
                             <a href="{{ asset('storage/'.$dataPdb->kartu_keluarga) }}" target="_blank">
                                 <img 
                                     id="imagePreview" 
@@ -520,7 +520,7 @@
                     <div class="mb-2 row">
                         <label for="formFile" class="col-sm-2 col-form-label">Akta Kelahiran</label>
                         <div class="col-sm-10">
-                            <input type="file" name="akta_kelahiran" id="formFile" class="form-control" required>
+                            <input type="file" name="akta_kelahiran" id="formFile" class="form-control" {{ $dataPdb->akta_kelahiran ? '' : 'required' }}>
                             <a href="{{ asset('storage/'.$dataPdb->akta_kelahiran) }}" target="_blank">
                                 <img 
                                     id="imagePreview" 

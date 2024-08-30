@@ -43,7 +43,7 @@
                                     <td>{{ \Carbon\Carbon::parse($semuaForm->tanggal_lahir)->format('d/m/Y') }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('dashboard.detail', ['id_pdb' => $semuaForm->id]) }}" class="btn"><i class="ri-eye-line fs-5"></i></a>
-                                        <a href="#" class="btn"><i class="ri-pencil-line fs-5"></i></a>
+                                        <a href="{{ route('dashboard.edit', ['id_pdb' => $semuaForm->id]) }}" class="btn"><i class="ri-pencil-line fs-5"></i></a>
                                         <a href="#" class="btn"><i class="ri-delete-bin-line fs-5"></i></i></a>
                                     </td>
                                 </tr>

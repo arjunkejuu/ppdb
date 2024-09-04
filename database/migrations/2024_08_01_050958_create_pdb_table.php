@@ -42,7 +42,7 @@ return new class extends Migration
             $table->string('pekerjaan_wali')->nullable();
             $table->string('penghasilan_wali')->nullable();
             $table->string('kartu_keluarga');
-            $table->string('akta_kelahiran');
+            $table->string('akta_kelahiran')->nullable();
             $table->string('email');
             $table->string('no_hp');
             $table->string('ktp_ayah')->nullable();

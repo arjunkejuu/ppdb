@@ -4,6 +4,7 @@ use App\Http\Middleware\CheckReferer;
 use App\Mail\NotificationMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,11 @@ Route::get('/email', function () {
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/dashboard/daftar', [App\Http\Controllers\DashboardController::class, 'daftar'])->name('dashboard.daftar');
+Route::post('/tambah', [App\Http\Controllers\DashboardController::class, 'tambah'])->name('dashboard.tambah');
 Route::get('/dashboard/detail/{id_pdb}', [App\Http\Controllers\DashboardController::class,'detail'])->name('dashboard.detail');
 Route::get('/dashboard/edit/{id_pdb}', [App\Http\Controllers\DashboardController::class,'edit'])->name('dashboard.edit');
 Route::put('/dashboard/update/{id_pdb}', [App\Http\Controllers\DashboardController::class,'update'])->name('dashboard.update');
+Route::delete('/dashboard/delete/{id_pdb}', [App\Http\Controllers\DashboardController::class, 'destroy'])->name('dashboard.delete');
 Route::get('/export-pdb/{id_pdb}', [App\Http\Controllers\PdbExportController::class,'exportToWord'])->name('export.pdb');
+Route::get('/export-data/{status?}', [App\Http\Controllers\DataPdbExportController::class, 'exportData'])->name('export.data');

@@ -13,15 +13,21 @@
                     <i class="ri-download-line fs-5"></i>
                 </a>
             </div>
+            @if ($dataPdb->status_pendaftaran === 'Sedang Diperiksa')
+                <div class="p-2">
+                    <a href="{{ route('dashboard.edit', $dataPdb->id) }}" class="btn border">
+                        <i class="ri-pencil-line fs-5"></i>
+                    </a>
+                </div>
+            @endif
             <div class="p-2">
-                <a href="{{ route('dashboard.edit', $dataPdb->id) }}" class="btn border">
-                    <i class="ri-pencil-line fs-5"></i>
-                </a>
-            </div>
-            <div class="p-2">
-                <a class="btn border">
-                    <i class="ri-delete-bin-line fs-5"></i>
-                </a>
+                <form action="{{ route('dashboard.delete', ['id_pdb' => $dataPdb->id]) }}" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn border" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                        <i class="ri-delete-bin-line fs-5"></i>
+                    </button>
+                </form>
             </div>
         </div>
         <h5 class="text-center mb-3">DATA RINCI</h5>
@@ -168,7 +174,7 @@
             <div class="mb-2 row">
                 <label for="tahun_lahir_ayah" class="col-sm-2 col-form-label">Tahun Lahir</label>
                 <div class="col-sm-10">
-                    <input name="tahun_lahir_ayah" type="text" id="tahun_lahir_ayah" class="dateYear form-control" placeholder="{{ $dataPdb->tahun_lahir_ayah }}" required>
+                    <input name="tahun_lahir_ayah" type="text" id="tahun_lahir_ayah" class="dateYear form-control" value="{{ old('tahun_lahir_ayah', $dataPdb->tahun_lahir_ayah) }}" required>
                 </div>
             </div>
             <div class="mb-2 row">
@@ -285,7 +291,7 @@
             <div class="mb-2 row">
                 <label for="tahun_lahir_ibu" class="col-sm-2 col-form-label">Tahun Lahir</label>
                 <div class="col-sm-10">
-                    <input name="tahun_lahir_ibu" type="text" id="tahun_lahir_ibu" class="dateYear form-control" placeholder="{{ $dataPdb->tahun_lahir_ibu }}" required>
+                    <input name="tahun_lahir_ibu" type="text" id="tahun_lahir_ibu" class="dateYear form-control" value="{{ old('tahun_lahir_ibu', $dataPdb->tahun_lahir_ibu) }}" required>
                 </div>
             </div>
             <div class="mb-2 row">
@@ -391,26 +397,25 @@
         </div>
         
         {{-- Data Wali --}}
-        @if ($dataPdb->nama_wali)
         <div class="border rounded p-3 position-relative mb-3">
             <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Wali</h5>
             <div class="mb-2 mt-3 row">
                 <label for="nama_wali" class="col-sm-2 col-form-label">Nama</label>
                 <div class="col-sm-10">
-                    <input type="text" name="nama_wali" id="nama_wali" class="form-control" value="{{ $dataPdb->nama_wali }}" required>
+                    <input type="text" name="nama_wali" id="nama_wali" class="form-control" value="{{ $dataPdb->nama_wali ?? '-' }}" required>
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="tahun_lahir_wali" class="col-sm-2 col-form-label">Tahun Lahir</label>
                 <div class="col-sm-10">
-                    <input name="tahun_lahir_wali" type="text" id="tahun_lahir_wali" class="dateYear form-control" placeholder="{{ $dataPdb->tahun_lahir_wali }}" required>
+                    <input name="tahun_lahir_wali" type="text" id="tahun_lahir_wali" class="dateYear form-control" value="{{ old('tahun_lahir_wali', $dataPdb->tahun_lahir_wali) ?? '-' }}" required>
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="pendidikan_wali" class="col-sm-2 col-form-label">Pendidikan</label>
                 <div class="col-sm-10">
                     <select name="pendidikan_wali" id="pendidikan_wali" class="form-select" required>
-                        <option value="{{ $dataPdb->pendidikan_wali }}" hidden selected>{{ $dataPdb->pendidikan_wali }}</option>
+                        <option value="{{ $dataPdb->pendidikan_wali }}" hidden selected>{{ $dataPdb->pendidikan_wali ?? '-' }}</option>
                         <option value="" disabled>Pilih Pendidikan ...</option>
                         <option value="D1">D1</option>
                         <option value="D2">D2</option>
@@ -443,7 +448,7 @@
                 <label for="pekerjaan_wali" class="col-sm-2 col-form-label">Pekerjaan</label>
                 <div class="col-sm-10">
                     <select name="pekerjaan_wali" id="pekerjaan_wali" class="form-select" required>
-                        <option value="{{ $dataPdb->pekerjaan_wali }}" hidden selected>{{ $dataPdb->pekerjaan_wali }}</option>
+                        <option value="{{ $dataPdb->pekerjaan_wali }}" hidden selected>{{ $dataPdb->pekerjaan_wali ?? '-' }}</option>
                         <option value="" disabled>Pilih Pekerjaan ...</option>
                         <option value="Tidak bekerja">Tidak bekerja</option>
                         <option value="Nelayan">Nelayan</option>
@@ -469,7 +474,7 @@
                 <label for="penghasilan_wali" class="col-sm-2 col-form-label">Penghasilan</label>
                 <div class="col-sm-10">
                     <select name="penghasilan_wali" id="penghasilan_wali" class="form-select" required>
-                        <option value="{{ $dataPdb->penghasilan_wali }}" hidden selected>{{ $dataPdb->penghasilan_wali }}</option>
+                        <option value="{{ $dataPdb->penghasilan_wali }}" hidden selected>{{ $dataPdb->penghasilan_wali ?? '-' }}</option>
                         <option value="" disabled>Pilih Penghasilan Perbulan ...</option>
                         <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
                         <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
@@ -482,10 +487,9 @@
                 </div>
             </div>
         </div>
-        @endif
         
         {{-- Berkas --}}
-        <div class="border rounded p-3 position-relative">
+        <div class="border rounded p-3 position-relative mb-3">
             <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Berkas</h5>
             <div class="mb-2 mt-3 row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
@@ -565,12 +569,84 @@
                 </div>
             </div>
         </div>
+        
+        {{-- Status Pendaftaran --}}
+        <div class="border rounded p-3 position-relative">
+            <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Status Pendaftaran</h5>
+            <div class="mb-2 row">
+                <label for="status_pendaftaran" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10">
+                    <select name="status_pendaftaran" id="status_pendaftaran" class="form-select" required>
+                        <option value="{{ $dataPdb->status_pendaftaran }}" hidden selected>{{ $dataPdb->status_pendaftaran }}</option>
+                        <option value="" disabled>Pilih Status Pendaftaran</option>
+                        <option value="Sedang Diperiksa">Sedang Diperiksa</option>
+                        <option value="Diterima">Diterima</option>
+                        <option value="Ditolak">Ditolak</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="catatan" class="col-sm-2 col-form-label">Catatan</label>
+                <div class="col-sm-10">
+                    <textarea name="catatan" id="catatan" rows="3" class="form-control">{{ old('catatan', $dataPdb->catatan) }}</textarea>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Success Modal -->
+        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Informasi</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ session('successModal') }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {{-- Error Modal --}}
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="errorModalLabel">Gagal</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ session('errorModal') }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
+
+{{-- Modal Berhasil --}}
+<script>
+    $(document).ready(function(){
+        @if(session('successModal'))
+            $('#successModal').modal('show');
+        @endif
+        
+        @if(session('errorModal'))
+            $('#errorModal').modal('show');
+        @endif
+    });
+</script>
 
 {{-- Date Picker --}}
 <script>
@@ -609,7 +685,7 @@
     });
 </script>
 
-
+{{-- Preview Gambar --}}
 <script>
     document.getElementById('formFile').addEventListener('change', function(event) {
       const file = event.target.files[0];

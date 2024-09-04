@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PendaftaranBerhasil;
 use App\Models\Pdb;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class PdbController extends Controller
 {   
@@ -41,15 +43,17 @@ class PdbController extends Controller
             $data = array_merge($request->all(), $uploadedFiles);
             
             // Simpan data ke database
-            Pdb::create($data);
+            $pdb = Pdb::create($data);
             
             DB::commit();
+            
+            Mail::to($pdb->email)->send(new PendaftaranBerhasil($pdb));
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat mendaftar.']);
         }
         
-        return redirect()->route('pdb.index')->with('successDaftar', 'Pendaftaran berhasil!');
+        return redirect()->back()->with('successDaftar', 'Pendaftaran berhasil! silahkan cek di halaman status pendaftaran atau tunggu email notifikasi yang dikirim ke email anda');
     }
     
     public function index()

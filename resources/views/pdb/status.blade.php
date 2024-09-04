@@ -18,7 +18,7 @@
                 <p>Nama siswa tidak ada yang cocok</p>
             @else
                 <div class="table-responsive">
-                    <table class="table table-striped text-center">
+                    <table class="table table-striped table-fixed" style="width: 1200px">
                         <thead>
                             <tr>
                                 <th scope="col" class="col-1">#</th>
@@ -34,7 +34,19 @@
                                     <td>{{ $result->nama_pdb }}</td>
                                     <td>{{ $result->nama_ibu }}</td>
                                     <td>
-                                        <button class="btn btn-warning btn-sm" disabled="disabled">{{ $result->status_pendaftaran }}</button>
+                                        @php
+                                            $buttonStatus = 'btn btn-sm ';
+                                            if ($result->status_pendaftaran === 'Sedang Diperiksa') {
+                                                $buttonStatus .= 'btn-warning';
+                                            } elseif ($result->status_pendaftaran === 'Ditolak') {
+                                                $buttonStatus .= 'btn-danger';
+                                            } elseif ($result->status_pendaftaran === 'Diterima') {
+                                                $buttonStatus .= 'btn-success';
+                                            } else {
+                                                $buttonClass .= 'btn-default';
+                                            }
+                                        @endphp
+                                        <button class="{{ $buttonStatus }}" disabled="disabled">{{ $result->status_pendaftaran }}</button>
                                     </td>
                                 </tr>
                             @endforeach

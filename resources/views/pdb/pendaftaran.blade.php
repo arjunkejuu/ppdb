@@ -22,6 +22,8 @@
 </div>
 <div class="container bg-white p-5 rounded">
     <form action="{{ route('pdb.daftar') }}" id="formPendaftaran" method="POST" enctype="multipart/form-data">
+        
+        {{-- Data Anak --}}
         <div class="step active">
             <div class="row justify-content-center text-center mb-3">
                 <h5>DATA ANAK</h5>
@@ -57,7 +59,7 @@
                     <div class="mb-3 col-lg-4">
                         <label for="" class="ms-2">Agama</label>
                         <select name="agama" id="" class="form-select" required>
-                            <option value="" disabled selected>Pilih Agama</option>
+                            <option value="" disabled selected>Pilih Agama ...</option>
                             <option value="Islam">Islam</option>
                             <option value="Kristen">Kristen</option>
                             <option value="Katolik">Katolik</option>
@@ -91,7 +93,7 @@
                     <div class="mb-3 col-lg-4">
                         <label for="" class="ms-2">Tempat Tinggal</label>
                         <select name="tempat_tinggal" id="" class="form-select" required>
-                            <option value="" disabled selected>Tinggal Bersama ...</option>
+                            <option value="" disabled selected>Pilih Tempat Tinggal ...</option>
                             <option value="Bersama Orang Tua">Bersama Orang Tua</option>
                             <option value="Wali">Wali</option>
                             <option value="Kost">Kost</option>
@@ -118,6 +120,8 @@
                             <option value="Perahu Penyebrangan/Rakit/Getek">Perahu Penyebrangan/Rakit/Getek</option>
                             <option value="Kuda">Kuda</option>
                             <option value="Sepeda">Sepeda</option>
+                            <option value="Sepeda Motor">Sepeda Motor</option>
+                            <option value="Mobil Pribadi">Mobil Pribadi</option>
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
@@ -143,6 +147,7 @@
             </div>
         </div>
         
+        {{-- Data Orangtua --}}
         <div class="step">
             <div class="row justify-content-center text-center mb-3">
                 <h5>DATA ORANG TUA</h5>
@@ -213,7 +218,7 @@
                     </div>
                     <div class="mb-3 col-lg-4">
                         <label for="" class="ms-2">Pekerjaan</label>
-                        <select name="pekerjaan_ayah" id="" class="form-select" required>
+                        <select name="pekerjaan_ayah" id="pekerjaan_ayah" class="form-select" required>
                             <option value="" disabled selected>Pilih Pekerjaan ...</option>
                             <option value="Tidak bekerja">Tidak bekerja</option>
                             <option value="Nelayan">Nelayan</option>
@@ -236,7 +241,7 @@
                     </div>
                     <div class="mb-3 col-lg-4">
                         <label for="" class="ms-2">Penghasilan</label>
-                        <select name="penghasilan_ayah" id="" class="form-select" required>
+                        <select name="penghasilan_ayah" id="penghasilan_ayah" class="form-select" required>
                             <option value="" disabled selected>Pilih Penghasilan Perbulan ...</option>
                             <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
                             <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
@@ -312,7 +317,7 @@
                     </div>
                     <div class="mb-3 col-lg-4">
                         <label for="" class="ms-2">Pekerjaan</label>
-                        <select name="pekerjaan_ibu" id="" class="form-select" required>
+                        <select name="pekerjaan_ibu" id="pekerjaan_ibu" class="form-select" required>
                             <option value="" disabled selected>Pilih Pekerjaan ...</option>
                             <option value="Tidak bekerja">Tidak bekerja</option>
                             <option value="Nelayan">Nelayan</option>
@@ -335,7 +340,7 @@
                     </div>
                     <div class="mb-3 col-lg-4">
                         <label for="" class="ms-2">Penghasilan</label>
-                        <select name="penghasilan_ibu" id="" class="form-select" required>
+                        <select name="penghasilan_ibu" id="penghasilan_ibu" class="form-select" required>
                             <option value="" disabled selected>Pilih Penghasilan Perbulan ...</option>
                             <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
                             <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
@@ -405,7 +410,7 @@
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="" class="ms-2">Pekerjaan</label>
-                            <select name="pekerjaan_wali" id="" class="form-select">
+                            <select name="pekerjaan_wali" id="pekerjaan_wali" class="form-select">
                                 <option value="" disabled selected>Pilih Pekerjaan ...</option>
                                 <option value="Tidak bekerja">Tidak bekerja</option>
                                 <option value="Nelayan">Nelayan</option>
@@ -428,7 +433,7 @@
                         </div>
                         <div class="mb-3 col-lg-4">
                             <label for="" class="ms-2">Penghasilan</label>
-                            <select name="penghasilan_wali" id="" class="form-select">
+                            <select name="penghasilan_wali" id="penghasilan_wali" class="form-select">
                                 <option value="" disabled selected>Pilih Penghasilan Perbulan ...</option>
                                 <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
                                 <option value="Rp. 500,000 - Rp. 999,999">Rp. 500,000 - Rp. 999,999</option>
@@ -440,11 +445,8 @@
                             </select>
                         </div>
                     </div>
-                </div>
-                
-                
-            </div>
-        
+                </div>    
+            </div>    
             <div class="row">
                 <div class="col d-flex justify-content-between">
                     <button class="btn btn-primary" type="button" onclick="prevStep()">
@@ -457,6 +459,7 @@
             </div>
         </div>
         
+        {{-- Upload Berkas --}}
         <div class="step">
             <div class="row justify-content-center text-center mb-3">
                 <h5>UPLOAD BERKAS</h5>
@@ -467,29 +470,35 @@
                     <div class="mb-3 col-lg-4">
                         <label for="karu_keluarga" class="ms-2">Kartu Keluarga</label>
                         <input name="kartu_keluarga" class="form-control" type="file" onchange="previewImage(this, 'preview_kartu_keluarga')" accept=".jpg, .jpeg, .png, .pdf" required>
+                        <div class="form-text" id="basic-addon4">.jpg .png .jpeg .pdf</div>
                         <div id="preview_kartu_keluarga" class="image-preview d-flex justify-content-center"></div>
-                    </div>
-                    <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Akta Kelahiran</label>
-                        <input name="akta_kelahiran" class="form-control" type="file" onchange="previewImage(this, 'preview_akta_kelahiran')" accept=".jpg, .jpeg, .png, .pdf" required>
-                        <div id="preview_akta_kelahiran" class="image-preview d-flex justify-content-center"></div>
                     </div>
                     <div class="mb-3 col-lg-4">
                         <label for="" class="ms-2">Email</label>
                         <input name="email" class="form-control" type="email" id="" placeholder="contoh@gmail.com" required inputmode="email">
+                        <div class="form-text" id="basic-addon4">Gunakan email yang aktif</div>
                     </div>
                     <div class="mb-3 col-lg-4">
                         <label for="" class="ms-2">Nomor Handphone</label>
                         <input name="no_hp" class="form-control" type="text" id="" placeholder="08123456xxx" onkeydown="return /[0-9]/i.test(event.key)" maxlength="13" minlength="10" required>
+                        <div class="form-text" id="basic-addon4">Gunakan nomor handphone yang aktif</div>
+                    </div>
+                    <div class="mb-3 col-lg-4">
+                        <label for="" class="ms-2">Akta Kelahiran (opsional)</label>
+                        <input name="akta_kelahiran" class="form-control" type="file" onchange="previewImage(this, 'preview_akta_kelahiran')" accept=".jpg, .jpeg, .png, .pdf">
+                        <div class="form-text" id="basic-addon4">.jpg .png .jpeg .pdf</div>
+                        <div id="preview_akta_kelahiran" class="image-preview d-flex justify-content-center"></div>
                     </div>
                     <div class="mb-3 col-lg-4">
                         <label for="" class="ms-2">KTP Ayah (opsional)</label>
                         <input name="ktp_ayah" class="form-control" type="file" onchange="previewImage(this, 'preview_ktp_ayah')" accept=".jpg, .jpeg, .png, .pdf">
+                        <div class="form-text" id="basic-addon4">.jpg .png .jpeg .pdf</div>
                         <div id="preview_ktp_ayah" class="image-preview d-flex justify-content-center"></div>                     
                     </div>
                     <div class="mb-3 col-lg-4">
                         <label for="" class="ms-2">KTP Ibu (opsional)</label>
                         <input name="ktp_ibu" class="form-control" type="file" onchange="previewImage(this, 'preview_ktp_ibu')" accept=".jpg, .jpeg, .png, .pdf">
+                        <div class="form-text" id="basic-addon4">.jpg .png .jpeg .pdf</div>
                         <div id="preview_ktp_ibu" class="image-preview d-flex justify-content-center"></div>                   
                     </div>
                     <input name="status_pendaftaran" type="text" value="Sedang Diperiksa" hidden>
@@ -497,6 +506,7 @@
                         <div class="mb-3 col-lg-4">
                             <label for="" class="ms-2">KTP Wali (opsional)</label>
                             <input name="ktp_wali" class="form-control" type="file" onchange="previewImage(this, 'preview_ktp_wali')" accept=".jpg, .jpeg, .png, .pdf">
+                            <div class="form-text" id="basic-addon4">.jpg .png .jpeg .pdf</div>
                             <div id="preview_ktp_wali" class="image-preview d-flex justify-content-center"></div>                     
                         </div>
                     </div>
@@ -526,7 +536,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Pendaftaran Anda telah berhasil!
+                    {{ session('successDaftar') }}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -742,5 +752,25 @@
             });
         }
     });
+</script>
+
+{{-- Tidak Berpenghasilan] --}}
+<script>
+    function handlePekerjaanChange(pekerjaanSelectId, penghasilanSelectId) {
+        const pekerjaanSelect = document.getElementById(pekerjaanSelectId);
+        const penghasilanSelect = document.getElementById(penghasilanSelectId);
+
+        pekerjaanSelect.addEventListener('change', function() {
+            if (pekerjaanSelect.value === 'Tidak bekerja' || pekerjaanSelect.value === 'Sudah meninggal') {
+                penghasilanSelect.value = 'Tidak berpenghasilan';
+            } else {
+                penghasilanSelect.value = "";
+            }
+        });
+    }
+
+    handlePekerjaanChange('pekerjaan_ayah', 'penghasilan_ayah');
+    handlePekerjaanChange('pekerjaan_ibu', 'penghasilan_ibu');
+    handlePekerjaanChange('pekerjaan_wali', 'penghasilan_wali');
 </script>
 @endpush

@@ -31,7 +31,8 @@ class DataPdbExportController extends Controller
             'I' => 'transportasi',
             'J' => 'alamat_tempat_tinggal',
             'K' => 'desa',
-            'L' => 'status_pendaftaran'
+            'L' => 'status_formulir',
+            'M' => 'status_registrasi'
         ];
         
         foreach ($columns as $column => $attribute) {
@@ -42,7 +43,7 @@ class DataPdbExportController extends Controller
         }
         
         if ($status) {
-            $pdbs = Pdb::where('status_pendaftaran', $status)->get();
+            $pdbs = Pdb::where('status_formulir', $status)->get();
         } else {
             $pdbs = Pdb::all();
         }

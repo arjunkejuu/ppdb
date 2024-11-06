@@ -45,7 +45,8 @@ class Pdb extends Model
         'ktp_ayah',
         'ktp_ibu',
         'ktp_wali',
-        'status_pendaftaran',
-        'catatan',
+        'status_formulir',
+        'status_registrasi',
+        'keterangan',
     ];
 }

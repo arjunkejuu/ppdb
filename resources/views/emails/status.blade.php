@@ -1,3 +1,3 @@
 <h1>Status Pendaftaran {{ $dataPdb->nama_pdb }}</h1>
-<p>Status: {{ $dataPdb->status_pendaftaran }}</p>
-<p>Catatan: {{ $dataPdb->catatan }}</p>
+<p>Status: {{ $dataPdb->status_formulir }}</p>
+<p>Catatan: {{ $dataPdb->keterangan }}</p>

@@ -22,16 +22,11 @@
                             <i class="ri-save-line fs-5"></i>
                         </button>
                     </div>
-                    <div class="p-2">
-                        <a href="#" class="btn border">
-                            <i class="ri-delete-bin-line fs-5"></i>
-                        </a>
-                    </div>
                 </div>
-                <h5 class="text-center mb-3">DATA RINCI</h5>
+                <h5 class="text-center mb-4">DATA RINCI</h5>
                 
                 {{-- Data PDB --}}
-                <div class="border rounded p-3 position-relative mb-3">
+                <div class="border rounded p-3 position-relative mb-4">
                     <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Anak</h5>
                     <div class="mb-2 mt-3 row">
                         <label for="nama_pdb" class="col-sm-2 col-form-label">Nama</label>
@@ -162,7 +157,7 @@
                 </div>
                 
                 {{-- Data Ayah Kandung --}}
-                <div class="border rounded p-3 position-relative mb-3">
+                <div class="border rounded p-3 position-relative mb-4">
                     <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Ayah Kandung</h5>
                     <div class="mb-2 mt-3 row">
                         <label for="nama_ayah" class="col-sm-2 col-form-label">Nama</label>
@@ -279,7 +274,7 @@
                 </div>
                 
                 {{-- Data Ibu Kandung --}}
-                <div class="border rounded p-3 position-relative mb-3">
+                <div class="border rounded p-3 position-relative mb-4">
                     <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Ibu Kandung</h5>
                     <div class="mb-2 mt-3 row">
                         <label for="nama_ibu" class="col-sm-2 col-form-label">Nama</label>
@@ -396,7 +391,7 @@
                 </div>
                 
                 {{-- Data Wali --}}
-                <div class="border rounded p-3 position-relative mb-3">
+                <div class="border rounded p-3 position-relative mb-4">
                     <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Wali</h5>
                     <div class="mb-2 mt-3 row">
                         <label for="nama_wali" class="col-sm-2 col-form-label">Nama</label>
@@ -488,7 +483,7 @@
                 </div>
                 
                 {{-- Berkas --}}
-                <div class="border rounded p-3 position-relative mb-3">
+                <div class="border rounded p-3 position-relative mb-4">
                     <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Berkas</h5>
                     <div class="mb-2 mt-3 row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
@@ -571,18 +566,32 @@
                 
                 {{-- Status Pendaftaran --}}
                 <div class="border rounded p-3 position-relative">
-                    <p class="text-danger">* Diperiksa kembali sebelum mengubah status pendaftaran, karena data tidak dapat diubah ketika status pendaftaran "Diterima" atau "Ditolak</p>
                     <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Status Pendaftaran</h5>
                     <div class="mb-2 row">
-                        <label for="status_pendaftaran" class="col-sm-2 col-form-label">Status</label>
+                        <label for="status_formulir" class="col-sm-2 col-form-label">Status Formulir</label>
                         <div class="col-sm-10">
-                            <select name="status_pendaftaran" id="status_pendaftaran" class="form-select" required>
-                                <option value="{{ $dataPdb->status_pendaftaran }}" hidden selected>{{ $dataPdb->status_pendaftaran }}</option>
+                            <select name="status_formulir" id="status_formulir" class="form-select" required @disabled($dataPdb->status_formulir != 'Diperiksa')>
+                                <option value="{{ $dataPdb->status_formulir }}" hidden selected>{{ $dataPdb->status_formulir }}</option>
                                 <option value="" disabled>Pilih Status Pendaftaran</option>
-                                <option value="Sedang Diperiksa">Sedang Diperiksa</option>
+                                <option value="Diperiksa">Diperiksa</option>
                                 <option value="Diterima">Diterima</option>
                                 <option value="Ditolak">Ditolak</option>
                             </select>
+                            <span class="text-danger">* Diperiksa kembali sebelum mengubah status formulir, karena status tidak dapat diubah ketika status "Diterima" atau "Ditolak</span>
+                        </div>
+                    </div>
+                    <div class="mb-2 row">
+                        <label for="status_registrasi" class="col-sm-2 col-form-label">Status Registrasi</label>
+                        <div class="col-sm-10">
+                            <select name="status_registrasi" id="status_registrasi" class="form-select" required @disabled($dataPdb->status_registrasi != 'Menunggu')>
+                                <option value="{{ $dataPdb->status_registrasi }}" hidden selected>{{ $dataPdb->status_registrasi }}</option>
+                                <option value="Menunggu">Menunggu</option>
+                                <option value="Selesai">Selesai</option>
+                                <option value="Batal">Batal</option>
+                            </select>
+                            @if ($dataPdb->status_registrasi === '-')
+                                <input type="hidden" name="status_registrasi" id="status_registrasi_hidden" value="{{ $dataPdb->status_registrasi }}">
+                            @endif
                         </div>
                     </div>
                     <div class="mb-2 row">
@@ -659,5 +668,28 @@
     handlePekerjaanChange('pekerjaan_ayah', 'penghasilan_ayah');
     handlePekerjaanChange('pekerjaan_ibu', 'penghasilan_ibu');
     handlePekerjaanChange('pekerjaan_wali', 'penghasilan_wali')
+</script>
+
+{{-- Status Registrasi --}}
+<script>
+    function handleStatusRegisChange(statusFormulirId, statusRegistrasiId, hiddenInputId) {
+        const statusFormulirSelect = document.getElementById(statusFormulirId);
+        const statusRegistrasiSelect = document.getElementById(statusRegistrasiId);
+        const statusRegistrasiHidden = document.getElementById(hiddenInputId);
+        
+        statusFormulirSelect.addEventListener('change', function() {
+            let newValue = '-';
+            if (statusFormulirSelect.value === 'Diterima') {
+                newValue = 'Menunggu';
+            } else if (statusFormulirSelect.value === 'Ditolak') {
+                newValue = 'Batal';
+            }
+
+            statusRegistrasiSelect.value = newValue;
+            statusRegistrasiHidden.value = newValue;
+        });
+    }
+    
+    handleStatusRegisChange('status_formulir', 'status_registrasi', 'status_registrasi_hidden');
 </script>
 @endpush

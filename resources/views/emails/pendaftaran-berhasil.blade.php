@@ -25,6 +25,6 @@
     <p>Terima kasih telah mendaftar. Anda dapat memeriksa status pendaftaran Anda dengan mengklik tombol berikut:</p>
     <p><a href="{{ $statusLink }}" class="button">Cek Status Pendaftaran</a></p>
     <p>Salam,</p>
-    <p>Tim Pendaftaran</p>
+    <p>Admin PAUD Bunga Pandan</p>
 </body>
 </html>

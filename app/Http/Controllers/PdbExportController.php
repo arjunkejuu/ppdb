@@ -13,7 +13,7 @@ use PhpOffice\PhpWord\Style\Table;
 
 class PdbExportController extends Controller
 {
-    public function exportToWord($id_pdb)
+    public function exportToWord($id_pdb, $download = true)
     {
         $pdb = Pdb::where("id", $id_pdb)->firstOrFail();
         
@@ -53,8 +53,9 @@ class PdbExportController extends Controller
             'Penghasilan Wali' => $pdb->penghasilan_wali ?? '-',
             'Email' => $pdb->email,
             'No HP' => $pdb->no_hp,
-            'Status Pendaftaran' => $pdb->status_pendaftaran,
-            'Catatan' => $pdb->catatan,
+            'Status Formulir' => $pdb->status_formulir,
+            'Status Registrasi' => $pdb->status_registrasi,
+            'Keterangan' => $pdb->keterangan,
             // Tambahkan data lain sesuai kebutuhan
         ];
         
@@ -179,7 +180,13 @@ class PdbExportController extends Controller
         $objWriter = IOFactory::createWriter($phpWord, 'Word2007');
         $objWriter->save($tempFile);
 
-        return response()->download($tempFile, $fileName)->deleteFileAfterSend(true);
+        if ($download) {
+            // Jika download true, unduh file dan hapus setelah dikirim
+            return response()->download($tempFile, $fileName)->deleteFileAfterSend(true);
+        } else {
+            // Jika tidak, hanya kembalikan path file
+            return $tempFile;
+        }
     }
 
 }

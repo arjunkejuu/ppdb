@@ -13,27 +13,16 @@
                     <i class="ri-download-line fs-5"></i>
                 </a>
             </div>
-            @if ($dataPdb->status_pendaftaran === 'Sedang Diperiksa')
-                <div class="p-2">
-                    <a href="{{ route('dashboard.edit', $dataPdb->id) }}" class="btn border">
-                        <i class="ri-pencil-line fs-5"></i>
-                    </a>
-                </div>
-            @endif
             <div class="p-2">
-                <form action="{{ route('dashboard.delete', ['id_pdb' => $dataPdb->id]) }}" method="POST" style="display: inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn border" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                        <i class="ri-delete-bin-line fs-5"></i>
-                    </button>
-                </form>
+                <a href="{{ route('dashboard.edit', $dataPdb->id) }}" class="btn border">
+                    <i class="ri-pencil-line fs-5"></i>
+                </a>
             </div>
         </div>
-        <h5 class="text-center mb-3">DATA RINCI</h5>
+        <h5 class="text-center mb-4">DATA RINCI</h5>
         
         {{-- Data PDB --}}
-        <div class="border rounded p-3 position-relative mb-3">
+        <div class="border rounded p-3 position-relative mb-4">
             <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Anak</h5>
             <div class="mb-2 mt-3 row">
                 <label for="nama_pdb" class="col-sm-2 col-form-label">Nama</label>
@@ -101,9 +90,9 @@
                         <option value="Netra (A)">Netra (A)</option>
                         <option value="Rungu (B)">Rungu (B)</option>
                         <option value="Granita Ringan (C)">Granita Ringan (C)</option>
-                        <option value="Granita Sedang (C1)">Granita Sedang (C1)</option>
+                        <option value="Granita (C1)">Granita (C1)</option>
                         <option value="Daksa Ringan">Daksa Ringan (D)</option>
-                        <option value="Daksa Sedang">Daksa Sedang (D1)</option>
+                        <option value="Daksa Sedang">Daksa (D1)</option>
                         <option value="Laras (E)">Laras (E)</option>
                         <option value="Wicara (F)">Wicara (F)</option>
                         <option value="Hyperaktif (H)">Hyperaktif (H)</option>
@@ -163,7 +152,7 @@
         </div>
         
         {{-- Data Ayah Kandung --}}
-        <div class="border rounded p-3 position-relative mb-3">
+        <div class="border rounded p-3 position-relative mb-4">
             <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Ayah Kandung</h5>
             <div class="mb-2 mt-3 row">
                 <label for="nama_ayah" class="col-sm-2 col-form-label">Nama</label>
@@ -219,9 +208,9 @@
                         <option value="Netra (A)">Netra (A)</option>
                         <option value="Rungu (B)">Rungu (B)</option>
                         <option value="Granita Ringan (C)">Granita Ringan (C)</option>
-                        <option value="Granita Sedang (C1)">Granita Sedang (C1)</option>
+                        <option value="Granita (C1)">Granita (C1)</option>
                         <option value="Daksa Ringan">Daksa Ringan (D)</option>
-                        <option value="Daksa Sedang">Daksa Sedang (D1)</option>
+                        <option value="Daksa Sedang">Daksa (D1)</option>
                         <option value="Laras (E)">Laras (E)</option>
                         <option value="Wicara (F)">Wicara (F)</option>
                         <option value="Hyperaktif (H)">Hyperaktif (H)</option>
@@ -280,7 +269,7 @@
         </div>
         
         {{-- Data Ibu Kandung --}}
-        <div class="border rounded p-3 position-relative mb-3">
+        <div class="border rounded p-3 position-relative mb-4">
             <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Ibu Kandung</h5>
             <div class="mb-2 mt-3 row">
                 <label for="nama_ibu" class="col-sm-2 col-form-label">Nama</label>
@@ -336,9 +325,9 @@
                         <option value="Netra (A)">Netra (A)</option>
                         <option value="Rungu (B)">Rungu (B)</option>
                         <option value="Granita Ringan (C)">Granita Ringan (C)</option>
-                        <option value="Granita Sedang (C1)">Granita Sedang (C1)</option>
+                        <option value="Granita (C1)">Granita (C1)</option>
                         <option value="Daksa Ringan">Daksa Ringan (D)</option>
-                        <option value="Daksa Sedang">Daksa Sedang (D1)</option>
+                        <option value="Daksa Sedang">Daksa (D1)</option>
                         <option value="Laras (E)">Laras (E)</option>
                         <option value="Wicara (F)">Wicara (F)</option>
                         <option value="Hyperaktif (H)">Hyperaktif (H)</option>
@@ -397,7 +386,7 @@
         </div>
         
         {{-- Data Wali --}}
-        <div class="border rounded p-3 position-relative mb-3">
+        <div class="border rounded p-3 position-relative mb-4">
             <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Data Wali</h5>
             <div class="mb-2 mt-3 row">
                 <label for="nama_wali" class="col-sm-2 col-form-label">Nama</label>
@@ -489,7 +478,7 @@
         </div>
         
         {{-- Berkas --}}
-        <div class="border rounded p-3 position-relative mb-3">
+        <div class="border rounded p-3 position-relative mb-4">
             <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Berkas</h5>
             <div class="mb-2 mt-3 row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
@@ -574,12 +563,24 @@
         <div class="border rounded p-3 position-relative">
             <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Status Pendaftaran</h5>
             <div class="mb-2 row">
-                <label for="status_pendaftaran" class="col-sm-2 col-form-label">Status</label>
+                <label for="status_formulir" class="col-sm-2 col-form-label">Status</label>
                 <div class="col-sm-10">
-                    <select name="status_pendaftaran" id="status_pendaftaran" class="form-select" required>
-                        <option value="{{ $dataPdb->status_pendaftaran }}" hidden selected>{{ $dataPdb->status_pendaftaran }}</option>
+                    <select name="status_formulir" id="status_formulir" class="form-select" required>
+                        <option value="{{ $dataPdb->status_formulir }}" hidden selected>{{ $dataPdb->status_formulir }}</option>
                         <option value="" disabled>Pilih Status Pendaftaran</option>
-                        <option value="Sedang Diperiksa">Sedang Diperiksa</option>
+                        <option value="Diperiksa">Diperiksa</option>
+                        <option value="Diterima">Diterima</option>
+                        <option value="Ditolak">Ditolak</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="status_registrasi" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-10">
+                    <select name="status_registrasi" id="status_registrasi" class="form-select" required>
+                        <option value="{{ $dataPdb->status_registrasi }}" hidden selected>{{ $dataPdb->status_registrasi }}</option>
+                        <option value="" disabled>Pilih Status Pendaftaran</option>
+                        <option value="Diperiksa">Diperiksa</option>
                         <option value="Diterima">Diterima</option>
                         <option value="Ditolak">Ditolak</option>
                     </select>

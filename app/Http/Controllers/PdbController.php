@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\PdbExportController;
 
 class PdbController extends Controller
 {   
@@ -42,12 +43,17 @@ class PdbController extends Controller
             // Merge data file dengan data request lainnya
             $data = array_merge($request->all(), $uploadedFiles);
             
+            // dd($request->all());
+            
             // Simpan data ke database
             $pdb = Pdb::create($data);
             
             DB::commit();
             
-            Mail::to($pdb->email)->send(new PendaftaranBerhasil($pdb));
+            $exportWord = new PdbExportController;
+            $filePath = $exportWord->exportToWord($pdb->id, false);
+            
+            Mail::to($pdb->email)->send(new PendaftaranBerhasil($pdb, $filePath));  
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat mendaftar.']);

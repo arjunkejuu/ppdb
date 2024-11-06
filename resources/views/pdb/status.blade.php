@@ -21,32 +21,67 @@
                     <table class="table table-striped table-fixed" style="width: 1200px">
                         <thead>
                             <tr>
-                                <th scope="col" class="col-1">#</th>
-                                <th scope="col" class="col-4">Nama PDB</th>
-                                <th scope="col" class="col-4">Orang Tua</th>
-                                <th scope="col" class="col-3">Status Pendaftaran</th>
+                                <th scope="col" class="col-1 text-center">#</th>
+                                <th scope="col" class="col-2">Nama PDB</th>
+                                <th scope="col" class="col-2">Orang Tua</th>
+                                <th scope="col" class="col-1 text-center">Formulir</th>
+                                <th scope="col" class="col-1 text-center">Registrasi</th>
+                                <th scope="col" class="col-2">Keterangan</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider align-middle">
                             @foreach($results as $index => $result)
                                 <tr>
-                                    <th scope="row">{{ $index + 1 }}</th>
+                                    <td class="text-center">{{ $index + 1 }}</td>
                                     <td>{{ $result->nama_pdb }}</td>
-                                    <td>{{ $result->nama_ibu }}</td>
-                                    <td>
+                                    <td>{{ substr($result->nama_ibu, 0, 3) . str_repeat('*', strlen($result->nama_ibu) - 3) }}</td>
+                                    <td class="text-center">
                                         @php
-                                            $buttonStatus = 'btn btn-sm ';
-                                            if ($result->status_pendaftaran === 'Sedang Diperiksa') {
-                                                $buttonStatus .= 'btn-warning';
-                                            } elseif ($result->status_pendaftaran === 'Ditolak') {
-                                                $buttonStatus .= 'btn-danger';
-                                            } elseif ($result->status_pendaftaran === 'Diterima') {
-                                                $buttonStatus .= 'btn-success';
+                                            $buttonStatusFormulir = 'btn btn-sm ';
+                                            $status_formulir = 'ri-subtract-fill';
+                                            if ($result->status_formulir === 'Diperiksa') {
+                                                $buttonStatusFormulir .= 'btn-warning';
+                                                $status_formulir = 'ri-time-line';
+                                            } elseif ($result->status_formulir === 'Ditolak') {
+                                                $buttonStatusFormulir .= 'btn-danger';
+                                                $status_formulir = 'ri-close-line';
+                                            } elseif ($result->status_formulir === 'Diterima') {
+                                                $buttonStatusFormulir .= 'btn-success';
+                                                $status_formulir = 'ri-check-line';
                                             } else {
                                                 $buttonClass .= 'btn-default';
                                             }
                                         @endphp
-                                        <button class="{{ $buttonStatus }}" disabled="disabled">{{ $result->status_pendaftaran }}</button>
+                                        <button class="{{ $buttonStatusFormulir }}" disabled="disabled"><i class="{{ $status_formulir }}"></i></button>
+                                    </td>
+                                    <td class="text-center">
+                                        @php
+                                            $buttonStatusRegistrasi = 'btn btn-sm ';
+                                            $status_registrasi = 'ri-subtract-fill';
+                                            if ($result->status_registrasi === 'Menunggu') {
+                                                $buttonStatusRegistrasi .= 'btn-warning';
+                                                $status_registrasi = 'ri-time-line';
+                                            } elseif ($result->status_registrasi === 'Selesai') {
+                                                $buttonStatusRegistrasi .= 'btn-success';
+                                                $status_registrasi = 'ri-check-line';
+                                            } elseif ($result->status_registrasi === 'Batal') {
+                                                $buttonStatusRegistrasi .= 'btn-danger';
+                                                $status_registrasi = 'ri-close-line';
+                                            } elseif ($result->status_formulir === 'Ditolak') {
+                                                $buttonStatusRegistrasi .= 'btn-danger';
+                                                $status_registrasi = 'ri-close-line';
+                                            } else {
+                                                $buttonStatusRegistrasi .= 'btn-secondary';
+                                                $status_registrasi = 'ri-spam-3-line';
+                                            }
+                                        @endphp
+                                        <button class="{{ $buttonStatusRegistrasi }}" disabled="disabled"><i class="{{ $status_registrasi }}"></i></button>
+                                    </td>
+                                    <td>
+                                        @php
+                                            $catatan = $result->keterangan ?? $result->status_formulir;
+                                        @endphp
+                                        <p>{{ $catatan }}</p>
                                     </td>
                                 </tr>
                             @endforeach

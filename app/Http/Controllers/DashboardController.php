@@ -21,11 +21,36 @@ class DashboardController extends Controller
     public function index()
     {
         $semuaForms = Pdb::all();
-        $diperiksaPdbs = Pdb::where('status_pendaftaran', 'Sedang Diperiksa')->get();
-        $diterimaPdbs = Pdb::where('status_pendaftaran', 'Diterima')->get();
-        $ditolakPdbs = Pdb::where('status_pendaftaran', 'Ditolak')->get();
+        $jumlahForms = Pdb::count();
+        $diperiksaPdbs = Pdb::where('status_formulir', 'Diperiksa')->get();
+        $jmlDiperiksaPdbs = $diperiksaPdbs->count();
+        $diterimaPdbs = Pdb::where('status_formulir', 'Diterima')->get();
+        $jmlDiterimaPdbs = $diterimaPdbs->count();
+        $ditolakPdbs = Pdb::where('status_formulir', 'Ditolak')->get();
+        $jmlDitolakPdbs = $ditolakPdbs->count();
+        $menungguPdbs = Pdb::where('status_registrasi', 'Menunggu')->get();
+        $jmlMenungguPdbs = $menungguPdbs->count();
+        $selesaiPdbs = Pdb::where('status_registrasi', 'Selesai')->get();
+        $jmlSelesaiPdbs = $selesaiPdbs->count();
+        $batalPdbs = Pdb::where('status_registrasi', 'Batal')->get();
+        $jmlBatalPdbs = $batalPdbs->count();
         
-        return view('dashboard.index', compact('semuaForms', 'diperiksaPdbs', 'diterimaPdbs', 'ditolakPdbs'));
+        return view('dashboard.index', compact(
+            'semuaForms', 
+            'diperiksaPdbs', 
+            'diterimaPdbs', 
+            'ditolakPdbs', 
+            'menungguPdbs', 
+            'selesaiPdbs',
+            'batalPdbs',
+            'jumlahForms',
+            'jmlDiperiksaPdbs',
+            'jmlDiterimaPdbs',
+            'jmlDitolakPdbs',
+            'jmlMenungguPdbs',
+            'jmlSelesaiPdbs',
+            'jmlBatalPdbs'
+        ));
     }
     
     public function daftar()
@@ -86,9 +111,9 @@ class DashboardController extends Controller
     {
         $dataPdb = Pdb::where('id', $id_pdb)->firstOrFail();
         
-        if ($dataPdb->status_pendaftaran === 'Diterima' || $dataPdb->status_pendaftaran === 'Ditolak') {
+        if ($dataPdb->status_formulir === 'Ditolak') {
             // Redirect ke halaman sebelumnya dengan pesan error
-            return redirect()->back()->with('errorModal', 'Anda tidak dapat mengedit data yang telah diterima atau ditolak.');
+            return redirect()->back()->with('errorModal', 'Anda tidak dapat mengedit data yang telah ditolak.');
         }
         
         return view('dashboard.edit', compact('dataPdb'));
@@ -138,7 +163,7 @@ class DashboardController extends Controller
             $pdb->$key = $path;
         }
         
-        if (in_array($pdb->status_pendaftaran, ['Diterima', 'Ditolak'])) {
+        if (in_array($pdb->status_formulir, ['Diterima', 'Ditolak'])) {
             Mail::to($pdb->email)->send(new StatusPendaftaranChanged($pdb));
         }
 

@@ -15,10 +15,12 @@ class PendaftaranBerhasil extends Mailable
     use Queueable, SerializesModels;
 
     public $pdb;
+    public $filePath;
     
-    public function __construct(Pdb $pdb)
+    public function __construct(Pdb $pdb, $filePath)
     {
         $this->pdb = $pdb;
+        $this->filePath = $filePath;
     }
 
     public function build()
@@ -30,6 +32,10 @@ class PendaftaranBerhasil extends Mailable
                     ->with([
                         'nama' => $this->pdb->nama_pdb,
                         'statusLink' => $url,
+                    ])
+                    ->attach($this->filePath, [
+                        'as' => 'Pendaftaran_' . $this->pdb->nama_pdb . '.docx',
+                        'mime' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                     ]);
     }
 }

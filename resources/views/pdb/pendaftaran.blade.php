@@ -32,11 +32,11 @@
                 @csrf
                 <div class="row mb-5">
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Nama Lengkap</label>
+                        <label for="" class="form-label">Nama Lengkap</label>
                         <input name="nama_pdb" type="text" class="form-control" placeholder="Masukkan Nama Lengkap ..." required onkeydown="return /[A-Za-z\s]/i.test(event.key)">
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Jenis Kelamin</label>
+                        <label for="" class="form-label">Jenis Kelamin</label>
                         <div>
                             <div class="form-check form-check-inline mt-1 col-4">
                                 <input name="jenis_kelamin" type="radio" class="form-check-input" value="Laki-laki" name="inlineRadioOption" checked>
@@ -49,15 +49,15 @@
                         </div>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Tanggal Lahir</label>
+                        <label for="" class="form-label">Tanggal Lahir</label>
                         <input name="tanggal_lahir" type="text" id="" class="date form-control" placeholder="HH/BB/TTTT" required>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Tempat Lahir</label>
+                        <label for="" class="form-label">Tempat Lahir</label>
                         <input name="tempat_lahir" type="text" class="form-control" placeholder="Masukkan Tempat Lahir ..." onkeydown="return /[A-Za-z\s]/i.test(event.key)" required>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Agama</label>
+                        <label for="" class="form-label">Agama</label>
                         <select name="agama" id="" class="form-select" required>
                             <option value="" disabled selected>Pilih Agama ...</option>
                             <option value="Islam">Islam</option>
@@ -69,7 +69,7 @@
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Berkebutuhan Khusus</label>
+                        <label for="" class="form-label">Berkebutuhan Khusus</label>
                         <select name="berkebutuhan_khusus" id="" class="form-select" required>
                             <option value="Tidak" selected>Tidak</option>
                             <option value="Netra (A)">Netra (A)</option>
@@ -91,7 +91,7 @@
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Tempat Tinggal</label>
+                        <label for="" class="form-label">Tempat Tinggal</label>
                         <select name="tempat_tinggal" id="" class="form-select" required>
                             <option value="" disabled selected>Pilih Tempat Tinggal ...</option>
                             <option value="Bersama Orang Tua">Bersama Orang Tua</option>
@@ -104,11 +104,11 @@
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Anak Ke-Berapa (Berdasarkan KK)</label>
+                        <label for="" class="form-label">Anak Ke-Berapa (Berdasarkan KK)</label>
                         <input name="anak_ke" type="text" class="form-control" placeholder="Anak Ke- ..." oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Moda Transportasi</label>
+                        <label for="" class="form-label">Moda Transportasi</label>
                         <select name="transportasi" id="" class="form-select" required>
                             <option value="" disabled selected>Pilih Moda Transportasi ...</option>
                             <option value="Jalan Kaki">Jalan Kaki</option>
@@ -125,11 +125,11 @@
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Alamat Tempat Tinggal</label>
+                        <label for="" class="form-label">Alamat Tempat Tinggal</label>
                         <textarea name="alamat_tempat_tinggal" id="" class="form-control" rows="5" placeholder="Masukkan Alamat Tempat Tinggal ..." required></textarea>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Desa/Kelurahan</label>
+                        <label for="" class="form-label">Desa/Kelurahan</label>
                         <input name="desa" type="text" class="form-control" placeholder="Masukkan Desa/Kelurahan ..." required>
                     </div>
                 </div>
@@ -157,15 +157,15 @@
                 <h5 class="fw-bold">Ayah Kandung</h5>
                 <div class="row">
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Nama Lengkap</label>
+                        <label for="" class="form-label">Nama Lengkap</label>
                         <input name="nama_ayah" type="text" class="form-control" placeholder="Masukkan Nama Lengkap ..." onkeydown="return /[A-Za-z\s]/i.test(event.key)" required>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Tahun Lahir</label>
+                        <label for="" class="form-label">Tahun Lahir</label>
                         <input name="tahun_lahir_ayah" type="text" class="dateYear form-control" placeholder="TTTT" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4" required>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Pendidikan</label>
+                        <label for="" class="form-label">Pendidikan</label>
                         <select name="pendidikan_ayah" id="" class="form-select" required>
                             <option value="" disabled selected>Pilih Pendidikan ...</option>
                             <option value="D1">D1</option>
@@ -195,7 +195,7 @@
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Berkebutuhan Khusus</label>
+                        <label for="" class="form-label">Berkebutuhan Khusus</label>
                         <select name="berkebutuhan_khusus_ayah" id="" class="form-select" required>
                             <option value="Tidak" selected>Tidak</option>
                             <option value="Netra (A)">Netra (A)</option>
@@ -217,7 +217,7 @@
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Pekerjaan</label>
+                        <label for="" class="form-label">Pekerjaan</label>
                         <select name="pekerjaan_ayah" id="pekerjaan_ayah" class="form-select" required>
                             <option value="" disabled selected>Pilih Pekerjaan ...</option>
                             <option value="Tidak bekerja">Tidak bekerja</option>
@@ -240,7 +240,7 @@
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Penghasilan</label>
+                        <label for="" class="form-label">Penghasilan</label>
                         <select name="penghasilan_ayah" id="penghasilan_ayah" class="form-select" required>
                             <option value="" disabled selected>Pilih Penghasilan Perbulan ...</option>
                             <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
@@ -256,15 +256,15 @@
                 <h5 class="fw-bold">Ibu Kandung</h5>
                 <div class="row">
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Nama Lengkap</label>
+                        <label for="" class="form-label">Nama Lengkap</label>
                         <input name="nama_ibu" type="text" class="form-control" placeholder="Masukkan Nama Lengkap ..." onkeydown="return /[A-Za-z\s]/i.test(event.key)" required>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Tahun Lahir</label>
+                        <label for="" class="form-label">Tahun Lahir</label>
                         <input name="tahun_lahir_ibu" type="text" required class="dateYear form-control" placeholder="TTTT" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Pendidikan</label>
+                        <label for="" class="form-label">Pendidikan</label>
                         <select name="pendidikan_ibu" id="" class="form-select" required>
                             <option value="" disabled selected>Pilih Pendidikan ...</option>
                             <option value="D1">D1</option>
@@ -294,7 +294,7 @@
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Berkebutuhan Khusus</label>
+                        <label for="" class="form-label">Berkebutuhan Khusus</label>
                         <select name="berkebutuhan_khusus_ibu" id="" class="form-select" required>
                             <option value="Tidak" selected>Tidak</option>
                             <option value="Netra (A)">Netra (A)</option>
@@ -316,7 +316,7 @@
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Pekerjaan</label>
+                        <label for="" class="form-label">Pekerjaan</label>
                         <select name="pekerjaan_ibu" id="pekerjaan_ibu" class="form-select" required>
                             <option value="" disabled selected>Pilih Pekerjaan ...</option>
                             <option value="Tidak bekerja">Tidak bekerja</option>
@@ -339,7 +339,7 @@
                         </select>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Penghasilan</label>
+                        <label for="" class="form-label">Penghasilan</label>
                         <select name="penghasilan_ibu" id="penghasilan_ibu" class="form-select" required>
                             <option value="" disabled selected>Pilih Penghasilan Perbulan ...</option>
                             <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
@@ -371,11 +371,11 @@
                     <h5 class="fw-bold">Wali Murid</h5>
                     <div class="row mb-5">
                         <div class="mb-3 col-lg-4">
-                            <label for="" class="ms-2">Nama Lengkap</label>
+                            <label for="" class="form-label">Nama Lengkap</label>
                             <input name="nama_wali" type="text" class="form-control" id="" placeholder="Masukkan Nama Lengkap ..." onkeydown="return /[A-Za-z\s]/i.test(event.key)">
                         </div>
                         <div class="mb-3 col-lg-4">
-                            <label for="" class="ms-2">Tahun Lahir</label>
+                            <label for="" class="form-label">Tahun Lahir</label>
                             <input name="tahun_lahir_wali" type="text" class="dateYear form-control" id="" placeholder="TTTT" onkeydown="return /[0-9]/i.test(event.key)">
                         </div>
                         <div class="mb-3 col-lg-4">
@@ -409,7 +409,7 @@
                             </select>
                         </div>
                         <div class="mb-3 col-lg-4">
-                            <label for="" class="ms-2">Pekerjaan</label>
+                            <label for="" class="form-label">Pekerjaan</label>
                             <select name="pekerjaan_wali" id="pekerjaan_wali" class="form-select">
                                 <option value="" disabled selected>Pilih Pekerjaan ...</option>
                                 <option value="Tidak bekerja">Tidak bekerja</option>
@@ -432,7 +432,7 @@
                             </select>
                         </div>
                         <div class="mb-3 col-lg-4">
-                            <label for="" class="ms-2">Penghasilan</label>
+                            <label for="" class="form-label">Penghasilan</label>
                             <select name="penghasilan_wali" id="penghasilan_wali" class="form-select">
                                 <option value="" disabled selected>Pilih Penghasilan Perbulan ...</option>
                                 <option value="Kurang dari Rp. 500,000">Kurang dari Rp. 500,000</option>
@@ -467,49 +467,74 @@
             <div class="form-group">
                 @csrf
                 <div class="row">
+                    <div class="mb-3 col-lg-12">
+                        <p>Pastikan gambar yang di unggah:</p>
+                        <ul>
+                            <li>Tidak buram</li>
+                            <li>Tidak salah</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="mb-3 col-lg-4">
-                        <label for="karu_keluarga" class="ms-2">Kartu Keluarga</label>
-                        <input name="kartu_keluarga" class="form-control" type="file" onchange="previewImage(this, 'preview_kartu_keluarga')" accept=".jpg, .jpeg, .png, .pdf" required>
-                        <div class="form-text" id="basic-addon4">.jpg .png .jpeg .pdf</div>
-                        <div id="preview_kartu_keluarga" class="image-preview d-flex justify-content-center"></div>
+                        <label for="kk" class="form-label">Upload Kartu Keluarga</label>
+                        <input id="kk" name="kartu_keluarga" class="form-control" type="file" onchange="validateDocument(this, 'kk')" accept=".jpg, .jpeg, .png" required>
+                        <div class="form-text">.jpg .png .jpeg</div>
+                        <div id="loading_message_kk" class="text-info mt-2" style="display:none;">Sedang memproses gambar...</div>
+                        <div id="success_message_kk" class="text-success mt-2" style="display:none;">Gambar Kartu Keluarga valid.</div>
+                        <div id="error_message_kk" class="text-danger mt-2"></div>
+                        <div id="preview_kk" class="image-preview d-flex justify-content-center mt-2"></div>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Email</label>
+                        <label for="akta" class="form-label">Akta Kelahiran</label>
+                        <input id="akta_kelahiran" name="akta_kelahiran" class="form-control" type="file" onchange="validateDocument(this, 'akta')" accept=".jpg, .jpeg, .png" required>
+                        <div class="form-text" id="basic-addon5">.jpg .png .jpeg</div>
+                        <div id="loading_message_akta" class="text-info mt-2" style="display:none;">Sedang memproses gambar...</div>
+                        <div id="success_message_akta" class="text-success mt-2" style="display:none;">Gambar Akta Kelahiran valid.</div>
+                        <div id="error_message_akta" class="text-danger mt-2"></div>
+                        <div id="preview_akta" class="image-preview d-flex justify-content-center mt-2"></div>
+                    </div>
+                    <div class="mb-3 col-lg-4">
+                        <label for="ktp_ayah" class="form-label">Upload KTP Ayah</label>
+                        <input id="ktp_ayah" name="ktp_ayah" class="form-control" type="file" onchange="validateDocument(this, 'ktp_ayah')" accept=".jpg, .jpeg, .png" required>
+                        <div class="form-text">.jpg .png .jpeg</div>
+                        <div id="loading_message_ktp_ayah" class="text-info mt-2" style="display:none;">Sedang memproses gambar...</div>
+                        <div id="success_message_ktp_ayah" class="text-success mt-2" style="display:none;">Gambar KTP Ayah valid.</div>
+                        <div id="error_message_ktp_ayah" class="text-danger mt-2"></div>
+                        <div id="preview_ktp_ayah" class="image-preview d-flex justify-content-center mt-2"></div>
+                    </div>
+                    <div class="mb-3 col-lg-4">
+                        <label for="ktp_ibu" class="form-label">Upload KTP Ibu</label>
+                        <input id="ktp_ibu" name="ktp_ibu" class="form-control" type="file" onchange="validateDocument(this, 'ktp_ibu')" accept=".jpg, .jpeg, .png" required>
+                        <div class="form-text">.jpg .png .jpeg</div>
+                        <div id="loading_message_ktp_ibu" class="text-info mt-2" style="display:none;">Sedang memproses gambar...</div>
+                        <div id="success_message_ktp_ibu" class="text-success mt-2" style="display:none;">Gambar KTP Ibu valid.</div>
+                        <div id="error_message_ktp_ibu" class="text-danger mt-2"></div>
+                        <div id="preview_ktp_ibu" class="image-preview d-flex justify-content-center mt-2"></div>
+                    </div>
+                    <div id="formWaliUpload">
+                        <div class="mb-3 col-lg-4">
+                            <label for="ktp_wali" class="form-label">Upload KTP Wali</label>
+                            <input id="ktp_wali" name="ktp_wali" class="form-control" type="file" onchange="validateDocument(this, 'ktp_wali')" accept=".jpg, .jpeg, .png">
+                            <div class="form-text">.jpg .png .jpeg</div>
+                            <div id="loading_message_ktp_wali" class="text-info mt-2" style="display:none;">Sedang memproses gambar...</div>
+                            <div id="success_message_ktp_wali" class="text-success mt-2" style="display:none;">Gambar KTP Wali valid.</div>
+                            <div id="error_message_ktp_wali" class="text-danger mt-2"></div>
+                            <div id="preview_ktp_wali" class="image-preview d-flex justify-content-center mt-2"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3 col-lg-4">
+                        <label for="" class="form-label">Email</label>
                         <input name="email" class="form-control" type="email" id="" placeholder="contoh@gmail.com" required inputmode="email">
                         <div class="form-text" id="basic-addon4">Gunakan email yang aktif</div>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Nomor Handphone</label>
+                        <label for="" class="form-label">Nomor Handphone</label>
                         <input name="no_hp" class="form-control" type="text" id="" placeholder="08123456xxx" onkeydown="return /[0-9]/i.test(event.key)" maxlength="13" minlength="10" required>
                         <div class="form-text" id="basic-addon4">Gunakan nomor handphone yang aktif</div>
                     </div>
-                    <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">Akta Kelahiran (opsional)</label>
-                        <input name="akta_kelahiran" class="form-control" type="file" onchange="previewImage(this, 'preview_akta_kelahiran')" accept=".jpg, .jpeg, .png, .pdf">
-                        <div class="form-text" id="basic-addon4">.jpg .png .jpeg .pdf</div>
-                        <div id="preview_akta_kelahiran" class="image-preview d-flex justify-content-center"></div>
-                    </div>
-                    <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">KTP Ayah (opsional)</label>
-                        <input name="ktp_ayah" class="form-control" type="file" onchange="previewImage(this, 'preview_ktp_ayah')" accept=".jpg, .jpeg, .png, .pdf">
-                        <div class="form-text" id="basic-addon4">.jpg .png .jpeg .pdf</div>
-                        <div id="preview_ktp_ayah" class="image-preview d-flex justify-content-center"></div>                     
-                    </div>
-                    <div class="mb-3 col-lg-4">
-                        <label for="" class="ms-2">KTP Ibu (opsional)</label>
-                        <input name="ktp_ibu" class="form-control" type="file" onchange="previewImage(this, 'preview_ktp_ibu')" accept=".jpg, .jpeg, .png, .pdf">
-                        <div class="form-text" id="basic-addon4">.jpg .png .jpeg .pdf</div>
-                        <div id="preview_ktp_ibu" class="image-preview d-flex justify-content-center"></div>                   
-                    </div>
-                    <input name="status_pendaftaran" type="text" value="Sedang Diperiksa" hidden>
-                    <div id="formWaliUpload">
-                        <div class="mb-3 col-lg-4">
-                            <label for="" class="ms-2">KTP Wali (opsional)</label>
-                            <input name="ktp_wali" class="form-control" type="file" onchange="previewImage(this, 'preview_ktp_wali')" accept=".jpg, .jpeg, .png, .pdf">
-                            <div class="form-text" id="basic-addon4">.jpg .png .jpeg .pdf</div>
-                            <div id="preview_ktp_wali" class="image-preview d-flex justify-content-center"></div>                     
-                        </div>
-                    </div>
+                    <input name="status_formulir" type="text" value="Diperiksa" hidden>
+                    <input name="status_registrasi" type="text" value="Menunggu Status Formulir Diterima" hidden>
                 </div>
             </div>
         
@@ -518,9 +543,9 @@
                     <button class="btn btn-primary" type="button" onclick="prevStep()">
                         <i class="ri-arrow-left-s-line fs-6"></i> Data Orang Tua
                     </button>
-                    <button class="btn btn-primary" type="submit">
+                    <button id="submitButton" class="btn btn-primary" type="submit">
                         Daftar <i class="ri-arrow-right-s-line fs-6"></i>
-                    </button>
+                    </button>                    
                 </div>
             </div>
         </div>
@@ -545,12 +570,55 @@
             </div>
         </div>
     </div>
+    
+    <!-- Modal untuk Crop -->
+    <div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cropModalLabel">Crop Gambar Dokumen</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cropImageContainer" style="width: 100%; height: 80vh;"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-warning" id="rotateButton">Putar Gambar</button>
+                    <button type="button" class="btn btn-primary" id="cropAndUploadButton">Crop dan Proses OCR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {{-- Modal Unsaved Changed --}}
+    <div class="modal fade" id="unsavedChangedModal" tabindex="-1" aria-labelledby="unsavedChangedModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="unsavedChangedModal">Pemberitahuan !!!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Anda akan meninggalkan isian Formulir Pendaftaran ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Melanjutkan isi Formulir</button>
+                    <button type="button" id="leavePageButton" class="btn btn-secondary" data-bs-dismiss="modal">Keluar dari halaman</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 
 @push('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.1/dist/tesseract.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
 {{-- Modal Berhasil --}}
 <script>
@@ -674,6 +742,7 @@
 {{-- Alert ketika meninggalkan form --}}
 <script>
     let isFormDirty = false;
+    let intendedHref = '';
 
     // Detect changes in the form
     const formElements = document.querySelectorAll('form input, form textarea, form select');
@@ -692,11 +761,29 @@
     });
 
     // Warn the user when they try to leave the page with unsaved changes
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (event) => {
+            if(isFormDirty){
+                event.preventDefault();
+                intendedHref = link.href;
+                const modal = new bootstrap.Modal(document.getElementById('unsavedChangedModal'));
+                modal.show();
+            }
+        })
+    })
+    
     window.addEventListener('beforeunload', (event) => {
         if (isFormDirty) {
+            // This will show the browser's default alert, not the modal
             event.preventDefault();
-            event.returnValue = '';
+            event.returnValue = ''; // Required for some browsers
         }
+    });
+
+    
+    document.getElementById('leavePageButton').addEventListener('click', () => {
+        isFormDirty = false;
+        window.location.href = intendedHref; // Force page reload to proceed with navigation
     });
 </script>
 
@@ -772,5 +859,144 @@
     handlePekerjaanChange('pekerjaan_ayah', 'penghasilan_ayah');
     handlePekerjaanChange('pekerjaan_ibu', 'penghasilan_ibu');
     handlePekerjaanChange('pekerjaan_wali', 'penghasilan_wali');
+</script>
+
+{{-- Validasi KTP, KK --}}
+<script>
+    let cropper;
+    let currentInput; // Untuk menyimpan input file saat ini
+    let rotation = 0;
+
+    function validateDocument(input, jenisDocument) {
+        // Reset pesan sebelum memproses gambar baru
+        document.getElementById('success_message_' + jenisDocument).style.display = 'none';
+        document.getElementById('error_message_' + jenisDocument).innerText = '';
+
+        const file = input.files[0];
+        if (!file) {
+            document.getElementById('error_message_' + jenisDocument).innerText = "Tidak ada file yang dipilih.";
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const imgElement = document.createElement('img');
+            imgElement.id = jenisDocument + '_crop_img';
+            imgElement.src = e.target.result;
+            imgElement.style.maxWidth = '100%';
+            imgElement.style.height = 'auto';
+
+            document.getElementById('cropImageContainer').innerHTML = '';
+            document.getElementById('cropImageContainer').appendChild(imgElement);
+
+            // Simpan input saat ini
+            currentInput = jenisDocument;
+
+            // Tampilkan modal
+            const cropModal = new bootstrap.Modal(document.getElementById('cropModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            cropModal.show();
+
+            cropModal._element.addEventListener('shown.bs.modal', function () {
+                let aspectRatio = 16 / 10; // Default untuk KTP Ayah dan Ibu
+                if (jenisDocument === 'kk') {
+                    aspectRatio = 16 / 11; // Aspek rasio untuk Kartu Keluarga
+                } else if (jenisDocument === 'akta') {
+                    aspectRatio = 16 / 20;
+                }
+                
+                cropper = new Cropper(imgElement, {
+                    aspectRatio: aspectRatio,
+                    viewMode: 1,
+                    autoCropArea: 1,
+                    scalable: true,
+                    zoomable: true,
+                    responsive: true,
+                    restore: true
+                });
+                
+                rotation = 0;
+            });
+
+            cropModal._element.addEventListener('hidden.bs.modal', function () {
+                if (cropper) {
+                    cropper.destroy();
+                    cropper = null;
+                }
+            });
+
+            // Tampilkan tombol crop
+            document.getElementById('cropButton').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    document.getElementById('rotateButton').addEventListener('click', function () {
+        if (cropper) {
+            rotation += 90; // Tambahkan 90 derajat pada setiap klik
+            cropper.rotate(90); // Putar gambar 90 derajat
+        }
+    });
+
+    document.getElementById('cropAndUploadButton').addEventListener('click', function () {
+        if (cropper) {
+            const jenisDocument = currentInput; // Mendapatkan jenis dokumen yang sedang aktif
+            document.getElementById('loading_message_' + jenisDocument).style.display = 'block';
+
+            const croppedCanvas = cropper.getCroppedCanvas();
+            const croppedImage = document.createElement('img');
+            croppedImage.src = croppedCanvas.toDataURL('image/jpeg');
+            croppedImage.style.maxWidth = '100%';
+
+            document.getElementById('preview_' + jenisDocument).innerHTML = '';
+            document.getElementById('preview_' + jenisDocument).appendChild(croppedImage);
+
+            const cropModal = bootstrap.Modal.getInstance(document.getElementById('cropModal'));
+            cropModal.hide();
+
+            croppedCanvas.toBlob(function (blob) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    Tesseract.recognize(
+                        e.target.result,
+                        'ind',
+                        {
+                            logger: function (m) {
+                                console.log(m);
+                            }
+                        }
+                    ).then(({ data: { text } }) => {
+                        if (isValidDocument(text, jenisDocument)) {
+                            document.getElementById('success_message_' + jenisDocument).style.display = 'block';
+                        } else {
+                            document.getElementById('error_message_' + jenisDocument).innerText = 'Dokumen tidak valid.';
+                        }
+
+                        if (cropper) {
+                            cropper.destroy();
+                            cropper = null;
+                        }
+                    }).finally(() => {
+                        document.getElementById('loading_message_' + jenisDocument).style.display = 'none';
+                    });
+                };
+                reader.readAsDataURL(blob);
+            });
+        }
+    });
+
+    function isValidDocument(text, jenisDocument) {
+        // Validasi untuk KTP Ayah, KTP Ibu, dan Kartu Keluarga
+        if (jenisDocument === 'ktp_ayah' || jenisDocument === 'ktp_ibu') {
+            return text.includes('NIK') || text.includes('KTP');
+        } else if (jenisDocument === 'kk') {
+            return text.includes('Kartu Keluarga') || text.includes('Kepala Keluarga');
+        } else if (jenisDocument === 'akta') {
+            return text.includes('Akta Kelahiran') || text.includes('Pencatatan Sipil');
+        }
+        return false;
+    }
 </script>
 @endpush

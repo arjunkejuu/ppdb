@@ -48,7 +48,9 @@ return new class extends Migration
             $table->string('ktp_ayah')->nullable();
             $table->string('ktp_ibu')->nullable();
             $table->string('ktp_wali')->nullable();
-            $table->string('status_pendaftaran');
+            $table->string('status_formulir');
+            $table->string('status_registrasi');
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

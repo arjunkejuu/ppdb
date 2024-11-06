@@ -18,6 +18,9 @@
     {{-- DataTables --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap5.css">
     
+    {{-- Cropper --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" />
+    
 </head>
 <body>
     <div id="app">

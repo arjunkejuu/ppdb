@@ -478,7 +478,12 @@
                 <div class="row">
                     <div class="mb-3 col-lg-4">
                         <label for="kk" class="form-label">Upload Kartu Keluarga</label>
-                        <input id="kk" name="kartu_keluarga" class="form-control" type="file" onchange="validateDocument(this, 'kk')" accept=".jpg, .jpeg, .png" required>
+                        <div class="input-group">
+                            <input id="kk" name="kartu_keluarga" class="form-control" type="file" onchange="validateDocument(this, 'kk')" accept=".jpg, .jpeg, .png" required>
+                            <button class="btn btn-outline-danger" type="button" onclick="clearFileInput('kk')">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </div>
                         <div class="form-text">.jpg .png .jpeg</div>
                         <div id="loading_message_kk" class="text-info mt-2" style="display:none;">Sedang memproses gambar...</div>
                         <div id="success_message_kk" class="text-success mt-2" style="display:none;">Gambar Kartu Keluarga valid.</div>
@@ -486,8 +491,13 @@
                         <div id="preview_kk" class="image-preview d-flex justify-content-center mt-2"></div>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="akta" class="form-label">Akta Kelahiran</label>
-                        <input id="akta_kelahiran" name="akta_kelahiran" class="form-control" type="file" onchange="validateDocument(this, 'akta')" accept=".jpg, .jpeg, .png" required>
+                        <label for="akta" class="form-label">Akta Kelahiran (Opsional)</label>
+                        <div class="input-group">
+                            <input id="akta_kelahiran" name="akta_kelahiran" class="form-control" type="file" onchange="validateDocument(this, 'akta')" accept=".jpg, .jpeg, .png">
+                            <button class="btn btn-outline-danger" type="button" onclick="clearFileInput('akta_kelahiran')">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </div>
                         <div class="form-text" id="basic-addon5">.jpg .png .jpeg</div>
                         <div id="loading_message_akta" class="text-info mt-2" style="display:none;">Sedang memproses gambar...</div>
                         <div id="success_message_akta" class="text-success mt-2" style="display:none;">Gambar Akta Kelahiran valid.</div>
@@ -495,8 +505,13 @@
                         <div id="preview_akta" class="image-preview d-flex justify-content-center mt-2"></div>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="ktp_ayah" class="form-label">Upload KTP Ayah</label>
-                        <input id="ktp_ayah" name="ktp_ayah" class="form-control" type="file" onchange="validateDocument(this, 'ktp_ayah')" accept=".jpg, .jpeg, .png" required>
+                        <label for="ktp_ayah" class="form-label">Upload KTP Ayah (Opsional)</label>
+                        <div class="input-group">
+                            <input id="ktp_ayah" name="ktp_ayah" class="form-control" type="file" onchange="validateDocument(this, 'ktp_ayah')" accept=".jpg, .jpeg, .png">
+                            <button class="btn btn-outline-danger" type="button" onclick="clearFileInput('ktp_ayah')">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </div>
                         <div class="form-text">.jpg .png .jpeg</div>
                         <div id="loading_message_ktp_ayah" class="text-info mt-2" style="display:none;">Sedang memproses gambar...</div>
                         <div id="success_message_ktp_ayah" class="text-success mt-2" style="display:none;">Gambar KTP Ayah valid.</div>
@@ -504,8 +519,13 @@
                         <div id="preview_ktp_ayah" class="image-preview d-flex justify-content-center mt-2"></div>
                     </div>
                     <div class="mb-3 col-lg-4">
-                        <label for="ktp_ibu" class="form-label">Upload KTP Ibu</label>
-                        <input id="ktp_ibu" name="ktp_ibu" class="form-control" type="file" onchange="validateDocument(this, 'ktp_ibu')" accept=".jpg, .jpeg, .png" required>
+                        <label for="ktp_ibu" class="form-label">Upload KTP Ibu (Opsional)</label>
+                        <div class="input-group">
+                            <input id="ktp_ibu" name="ktp_ibu" class="form-control" type="file" onchange="validateDocument(this, 'ktp_ibu')" accept=".jpg, .jpeg, .png">
+                            <button class="btn btn-outline-danger" type="button" onclick="clearFileInput('ktp_ibu')">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </div>
                         <div class="form-text">.jpg .png .jpeg</div>
                         <div id="loading_message_ktp_ibu" class="text-info mt-2" style="display:none;">Sedang memproses gambar...</div>
                         <div id="success_message_ktp_ibu" class="text-success mt-2" style="display:none;">Gambar KTP Ibu valid.</div>
@@ -515,7 +535,12 @@
                     <div id="formWaliUpload">
                         <div class="mb-3 col-lg-4">
                             <label for="ktp_wali" class="form-label">Upload KTP Wali</label>
-                            <input id="ktp_wali" name="ktp_wali" class="form-control" type="file" onchange="validateDocument(this, 'ktp_wali')" accept=".jpg, .jpeg, .png">
+                            <div class="input-group">
+                                <input id="ktp_wali" name="ktp_wali" class="form-control" type="file" onchange="validateDocument(this, 'ktp_wali')" accept=".jpg, .jpeg, .png">
+                                <button class="btn btn-outline-danger" type="button" onclick="clearFileInput('ktp_wali')">
+                                    <i class="ri-delete-bin-line"></i>
+                                </button>
+                            </div>
                             <div class="form-text">.jpg .png .jpeg</div>
                             <div id="loading_message_ktp_wali" class="text-info mt-2" style="display:none;">Sedang memproses gambar...</div>
                             <div id="success_message_ktp_wali" class="text-success mt-2" style="display:none;">Gambar KTP Wali valid.</div>
@@ -530,11 +555,11 @@
                     </div>
                     <div class="mb-3 col-lg-4">
                         <label for="" class="form-label">Nomor Handphone</label>
-                        <input name="no_hp" class="form-control" type="text" id="" placeholder="08123456xxx" onkeydown="return /[0-9]/i.test(event.key)" maxlength="13" minlength="10" required>
+                        <input name="no_hp" class="form-control" type="text" id="" placeholder="08123456xxx" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="13" minlength="10" required>
                         <div class="form-text" id="basic-addon4">Gunakan nomor handphone yang aktif</div>
                     </div>
                     <input name="status_formulir" type="text" value="Diperiksa" hidden>
-                    <input name="status_registrasi" type="text" value="Menunggu Status Formulir Diterima" hidden>
+                    <input name="status_registrasi" type="text" value="-" hidden>
                 </div>
             </div>
         
@@ -543,7 +568,7 @@
                     <button class="btn btn-primary" type="button" onclick="prevStep()">
                         <i class="ri-arrow-left-s-line fs-6"></i> Data Orang Tua
                     </button>
-                    <button id="submitButton" class="btn btn-primary" type="submit">
+                    <button id="submitButton" class="btn btn-primary" type="submit" @disabled(true)>
                         Daftar <i class="ri-arrow-right-s-line fs-6"></i>
                     </button>                    
                 </div>
@@ -788,7 +813,7 @@
 </script>
 
 {{-- Priview Gambar --}}
-<script>
+{{-- <script>
     function previewImage(input, previewId) {
         const maxFileSize = 5 * 1024 * 1024; // 2MB in bytes
         const preview = document.getElementById(previewId);
@@ -821,7 +846,7 @@
             reader.readAsDataURL(file);
         }
     }
-</script>
+</script> --}}
 
 {{-- Scroll ke form yang dipilih --}}
 <script>
@@ -866,6 +891,13 @@
     let cropper;
     let currentInput; // Untuk menyimpan input file saat ini
     let rotation = 0;
+    
+    function clearFileInput(inputId) {
+        const fileInput = document.getElementById(inputId);
+        if (fileInput) {
+            fileInput.value = ""; // Hapus file yang diinput
+        }
+    }
 
     function validateDocument(input, jenisDocument) {
         // Reset pesan sebelum memproses gambar baru
@@ -955,9 +987,16 @@
 
             const cropModal = bootstrap.Modal.getInstance(document.getElementById('cropModal'));
             cropModal.hide();
+            
+            const submitButton = document.getElementById('submitButton');
+            const inputField = document.getElementById(jenisDocument);
+            
+            const originalFiles = inputField.value;
 
             croppedCanvas.toBlob(function (blob) {
                 const reader = new FileReader();
+                submitButton.disabled = true;
+                inputField.disabled = true;
                 reader.onload = function (e) {
                     Tesseract.recognize(
                         e.target.result,
@@ -970,8 +1009,13 @@
                     ).then(({ data: { text } }) => {
                         if (isValidDocument(text, jenisDocument)) {
                             document.getElementById('success_message_' + jenisDocument).style.display = 'block';
+                            submitButton.disabled = false;
+                            inputField.disabled = false;
                         } else {
                             document.getElementById('error_message_' + jenisDocument).innerText = 'Dokumen tidak valid.';
+                            submitButton.disabled = true;
+                            inputField.value = null;
+                            inputField.disabled = false;
                         }
 
                         if (cropper) {

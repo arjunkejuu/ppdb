@@ -563,7 +563,7 @@
         <div class="border rounded p-3 position-relative">
             <h5 class="position-absolute top-0 start-0 translate-middle-y ms-4 bg-white">Status Pendaftaran</h5>
             <div class="mb-2 row">
-                <label for="status_formulir" class="col-sm-2 col-form-label">Status</label>
+                <label for="status_formulir" class="col-sm-2 col-form-label">Status Registrasi</label>
                 <div class="col-sm-10">
                     <select name="status_formulir" id="status_formulir" class="form-select" required>
                         <option value="{{ $dataPdb->status_formulir }}" hidden selected>{{ $dataPdb->status_formulir }}</option>
@@ -575,7 +575,7 @@
                 </div>
             </div>
             <div class="mb-2 row">
-                <label for="status_registrasi" class="col-sm-2 col-form-label">Status</label>
+                <label for="status_registrasi" class="col-sm-2 col-form-label">Status Registrasi</label>
                 <div class="col-sm-10">
                     <select name="status_registrasi" id="status_registrasi" class="form-select" required>
                         <option value="{{ $dataPdb->status_registrasi }}" hidden selected>{{ $dataPdb->status_registrasi }}</option>
